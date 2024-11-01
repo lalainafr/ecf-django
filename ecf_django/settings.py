@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ecf_app',
+    'account',
+    
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +137,7 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# make our own custom user model
+AUTH_USER_MODEL = 'account.User'
+

@@ -63,11 +63,25 @@
                     <a class="nav-link disabled">Disabled</a>
                 </li> -->
             </ul>
-            <form class="d-flex">
-                <button class="btn btn-outline-success rounded-3" type="submit">
-                    Login
-                </button>
-            </form>
+            <div class="d-flex">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'logout'%}">
+                    <button
+                        class="btn btn-sm btn-outline-success rounded-4 mx-1"
+                    >
+                        Logout
+                    </button>
+                </a>
+                {% else %}
+                <a href="{% url 'login'%}">
+                    <button
+                        class="btn btn-sm btn-outline-success rounded-4 mx-1"
+                    >
+                        Login
+                    </button>
+                </a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </nav>

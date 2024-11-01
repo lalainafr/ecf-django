@@ -1,0 +1,81 @@
+{% extends 'base.html'%} {%load widget_tweaks%} {% block content%}
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <h1 class="display-3 fw-bold lh-1 mb-3 text-secondary">
+                Inscription
+            </h1>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Suscipit illum, voluptatem doloremque hic nisi ipsum eum, fuga
+                possimus perspiciatis expedita, corrupti beatae delectus vero
+                sit molestias nostrum aliquid quae magnam? Lorem ipsum dolor
+                sit, amet consectetur adipisicing elit. Suscipit illum,
+                voluptatem doloremque hic nisi ipsum eum, fuga possimus
+                perspiciatis expedita, corrupti beatae delectus vero sit
+                molestias nostrum aliquid quae magnam?
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="d-flex justify-content-center">
+            <div class="col-md-6">
+                <form
+                    class="p-5 p-md-5 border bg-white rounded-4 shadow-lg"
+                    method="POST"
+                >
+                    {%csrf_token%}
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label"
+                            >Firstname</label
+                        >
+                        {% render_field form.first_name class="form-control" %}
+                        <!-- TWEAKS for styling
+                input type="email" name="username" class="form-control" id="floatingInput"
+                /> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label"
+                            >Lastname</label
+                        >
+                        {% render_field form.last_name class="form-control" %}
+                        <!-- TWEAKS for styling
+                input type="email" name="username" class="form-control" id="floatingInput"
+                /> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label"
+                            >Email address</label
+                        >
+                        {% render_field form.email class="form-control" %}
+                        <!-- TWEAKS for styling
+                input type="email" name="username" class="form-control" id="floatingInput"
+                /> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label"
+                            >Enter Password</label
+                        >
+                        {% render_field form.password1 class="form-control" %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label"
+                            >Confirm Password</label
+                        >
+                        {% render_field form.password2 class="form-control" %}
+                    </div>
+                    <button type="submit" class="btn b btn-outline-primary">
+                        Sign up
+                    </button>
+                    <hr />
+                    <small class="text-muted"
+                        >Already have an account?
+                        <a href="{% url 'login'%}"> Sign In</a></small
+                    >
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock content%}

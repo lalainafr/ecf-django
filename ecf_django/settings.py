@@ -141,3 +141,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # make our own custom user model
 AUTH_USER_MODEL = 'account.User'
 
+# Looking to send emails in production? Check out our Email API/SMTP product!
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'd8a866edc7aa96'
+EMAIL_HOST_PASSWORD = '1f9001687a7a8c'
+EMAIL_PORT = '2525'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+

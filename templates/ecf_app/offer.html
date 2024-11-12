@@ -12,114 +12,99 @@
         </p>
     </div>
 </div>
-{% endblock heading%} {% block content %}
+{% endblock heading%} {% block content %} {%load widget_tweaks%}
 <!-- Section-->
-<section>
-    <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-        quibusdam, tempora cum distinctio commodi minus ab voluptatem dicta
-        totam sit, maiores, laborum at aut in temporibus deserunt. Nostrum,
-        laborum temporibus! Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Doloremque asperiores natus itaque, eius necessitatibus autem
-        nostrum provident excepturi sint aut vitae blanditiis iste inventore
-        sequi officiis vel praesentium amet. Iste?
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-md-3 card m-3 p-3 shadow-lg" style="width: 15rem">
-            <img
-                class="card-img-top"
-                src="{% static 'assets/img/basket.jpg' %}"
-                alt=""
-                class="w-25 d-block rounded-5 shadow-sm p-2"
-            />
-            <div class="card-body">
-                <h5 class="card-title">Basket</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    nup the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-outline-primary">Panier</a>
+<section class="container">
+    <div class="row mt-4">
+        <div class="col-md-5">
+            <h2 class="text-muted">Ajout une offre</h2>
+            <br />
+            <div class="w-75 borde rounded-4 shadow-lg p-4">
+                <!-- Specifier la methode POST -->
+                <form action="" method="POST">
+                    {% csrf_token%}
+
+                    <!-- pour le EDIT en ajax -->
+                    <input type="hidden" name="stuid" id="stuid" />
+
+                    <div class="floatingInput mb-3">
+                        <label for="floatingInput" class="form-label">
+                            <small> Name </small>
+                        </label>
+                        {% render_field form.name class="form-control" %}
+                    </div>
+                    <div class="floatingInput mb-3">
+                        <label for="floatingInput" class="form-label">
+                            <small> Description </small>
+                        </label>
+                        {% render_field form.description class="form-control"%}
+                    </div>
+                    <div class="floatingInput mb-3">
+                        <label for="floatingInput" class="form-label">
+                            <small> Nombre de personne </small>
+                        </label>
+                        {% render_field form.nbPers class="form-control" %}
+                    </div>
+                    <div class="floatingInput mb-3">
+                        <label for="floatingInput" class="form-label">
+                            <small> Remise</small>
+                        </label>
+                        {% render_field form.discount class="form-control" %}
+                    </div>
+                    <input
+                        type="button"
+                        class="btn btn-sm btn-success"
+                        value="Save"
+                        id="btn-save"
+                    />
+                </form>
             </div>
         </div>
-        <div class="col-md-3 card m-3 p-3 shadow-lg" style="width: 15rem">
-            <img
-                class="card-img-top"
-                src="{% static 'assets/img/fleche.jpg' %}"
-                alt=""
-                class="w-25 d-block rounded-5 shadow-sm p-2"
-            />
-            <div class="card-body">
-                <h5 class="card-title">Athletisme</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-outline-primary">Panier</a>
-            </div>
-        </div>
-        <div class="col-md-3 card m-3 p-3 shadow-lg" style="width: 15rem">
-            <img
-                class="card-img-top"
-                src="{% static 'assets/img/poids.jpg' %}"
-                alt=""
-                class="w-25 d-block rounded-5 shadow-sm p-2"
-            />
-            <div class="card-body">
-                <h5 class="card-title">Poids</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-outline-primary">Panier</a>
-            </div>
-        </div>
-        <div class="col-md-3 card m-3 p-3 shadow-lg" style="width: 15rem">
-            <img
-                class="card-img-top"
-                src="{% static 'assets/img/natation.jpg' %}"
-                alt=""
-                class="w-25 d-block rounded-5 shadow-sm p-2"
-            />
-            <div class="card-body">
-                <h5 class="card-title">Natation</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-outline-primary">Panier</a>
-            </div>
-        </div>
-        <div class="col-md-3 card m-3 p-3 shadow-lg" style="width: 15rem">
-            <img
-                class="card-img-top"
-                src="{% static 'assets/img/poids.jpg' %}"
-                alt=""
-                class="w-25 d-block rounded-5 shadow-sm p-2"
-            />
-            <div class="card-body">
-                <h5 class="card-title">Poids</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-outline-primary">Panier</a>
-            </div>
-        </div>
-        <div class="col-md-3 card m-3 p-3 shadow-lg" style="width: 15rem">
-            <img
-                class="card-img-top"
-                src="{% static 'assets/img/basket.jpg' %}"
-                alt=""
-                class="w-25 d-block rounded-5 shadow-sm p-2"
-            />
-            <div class="card-body">
-                <h5 class="card-title">Poids</h5>
-                <p class="card-text">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-outline-primary">Panier</a>
-            </div>
+        <div class="col-md-7">
+            <h2 class="text-muted">Offer list</h2>
+            <small class="text-muted"> List updated dynamically </small>
+            <br />
+            <br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Nb pers</th>
+                        <th scope="col">Remise</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <!-- id 'tbody' to change the content withthe ajax data  -->
+                <tbody id="tbody">
+                    {% for offer in offers %}
+                    <tr>
+                        <th scope="row">{{offer.id}}</th>
+                        <td>{{offer.name}}</td>
+                        <td>{{offer.description}}</td>
+                        <td>{{offer.nbPers}}</td>
+                        <td>{{offer.discount}}</td>
+                        <td>
+                            <input
+                                type="button"
+                                value="Edit"
+                                class="btn btn-outline-warning btn-edit btn-sm"
+                                data-sid="{{offer.id}}"
+                            />
+                            <!-- 'data-sid' pour récuperer le id de l'offre concernée à supprimer-->
+                            <input
+                                type="button"
+                                value="Delete"
+                                class="btn btn-outline-danger btn-del btn-sm"
+                                data-sid="{{offer.id}}"
+                            />
+                            <!-- 'data-sid' pour récuperer le id de l'offre concernée à supprimer-->
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </section>

@@ -4,10 +4,12 @@ import uuid
 
 # create user model here
 class User(AbstractUser):
-    last_name= models.CharField(null=True, blank=True)
-    first_name= models.CharField(null=True, blank=True)
+    last_name= models.CharField( max_length=50, null=True, blank=True)
+    first_name= models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField(unique=True)
     userUid = models.UUIDField(default=uuid.uuid4)
-   
-    def __str__(self):
-        return self.last_name + self.first_name
+    
+    def __str__(self) -> str:
+        return str(self.last_name) + ' ' +  str(self.first_name)
+
+

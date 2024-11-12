@@ -1,0 +1,10 @@
+--- OFFER ---
+creer model
+créer form
+create view - form
+install jquery - 
+
+script
+
+view - save_data
+urls

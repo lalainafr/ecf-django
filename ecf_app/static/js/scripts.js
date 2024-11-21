@@ -30,9 +30,10 @@ $('#btn-save').click(function () {
 
         success: function(data) {
             
-            // prendre les données du data afin de refaire le tableau de la liste des offres --> pas de rechargement de la page
-            x = data.offer_data               
-
+            // prendre les données de data afin de refaire le tableau de la liste des offres --> pas de rechargement de la page
+            x = data.offer_data
+            // trier par id les data               
+            x.sort((a, b) => parseInt(a.id) - parseInt(b.id));
             if(data.status == 'Data saved'){
                 for (let i = 0; i < x.length; i++) {
                     // construire le contenu du tableau en fonction de données reçues en AJAX
@@ -115,8 +116,8 @@ $('#tbody').on("click", ".btn-edit", function() {
     
     mythis = $(this);
     console.log(mydata);
-    // <input type="button" value="Delete" class="btn btn-outline-danger btn-del btn-sm" data-sid="52"></input>
-
+    // {sid: '13'}
+    // le reste ne change pas: description, nbPers, discount
 
     // appel AJAX
     $.ajax({
@@ -126,6 +127,9 @@ $('#tbody').on("click", ".btn-edit", function() {
         success: function(data) {
             // Prépopuler avec data les données du formulaire sur le browser
             // a partir du id de chaque propriété dans le formulaire
+            
+            console.log(data)
+            // {id: 13, name: 'famille', description: 'valable pour 4 peronnes', nbPers: 1, discount: 30}
             $('#stuid').val(data.id);
             $('#id_name').val(data.name);
             $('#id_description').val(data.description);

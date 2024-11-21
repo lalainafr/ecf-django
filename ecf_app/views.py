@@ -14,7 +14,7 @@ def competition(request):
 # --- OFFER ---
 def offer(request):
     form = OfferForm()
-    offers = Offer.objects.all()
+    offers = Offer.objects.all().order_by('id')
     context = {'form': form, 'offers': offers}
     return render(request, 'ecf_app/offer.html', context)
 

@@ -1,0 +1,13 @@
+
+
+*{
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+.heading-style{
+   background-image: url('/static/assets/img/paris.jpg');
+   background-repeat: no-repeat;
+   border-radius: 50%;
+  }

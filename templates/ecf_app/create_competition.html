@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% load static %} {% block heading%}
+<div class="text-muted p-5">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-white">
+            Créer une competition
+        </h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
+            obcaecati aspernatur, soluta nemo placeat ipsum tempore saepe,
+            cupiditate deleniti a officia debitis quam id numquam veniam nisi
+            provident aperiam temporibus!
+        </p>
+    </div>
+</div>
+{% endblock heading%} {% block content %} {%load widget_tweaks%}
+<!-- Section-->
+<section class="container">
+    <div class="row mt-4">
+        <div class="col-md-5 mx-auto">
+            <br />
+            <div class="w-75 border rounded-4 shadow-lg p-4">
+                <!-- Specifier la methode POST -->
+                <form action="" method="POST" enctype='multipart/form-data'> 
+                    {% csrf_token%}
+
+                    <div class="floatingInput mb-3">
+                        <label for="floatingInput" class="form-label">
+                            <small> Titre </small>
+                        </label>
+                        {% render_field form.title class="form-control" %}
+                    </div>
+                    <div class="floatingInput mb-3">
+                        <label for="floatingInput" class="form-label">
+                            <small> Description </small>
+                        </label>
+                        {% render_field form.description class="form-control"%}
+                    </div>
+                    <div class="floatingInput mb-3">
+                        <label for="floatingInput" class="form-label">
+                            <small> Lieu </small>
+                        </label>
+                        {% render_field form.place class="form-control" %}
+                    </div>
+                    <div class="floatingInput mb-3">
+                        <label for="floatingInput" class="form-label">
+                            <small> Image</small>
+                        </label>
+                        {% render_field form.image class="form-control" %}
+                    </div>
+                    <button class="btn btn-success">Créer</button>
+                </form>
+            </div>
+        </div>
+            
+</section>
+{% endblock content %}
+<!-- Footer-->

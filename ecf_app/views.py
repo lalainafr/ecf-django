@@ -1,8 +1,10 @@
-from django.shortcuts import render
-from .form import OfferForm
-from .models import Offer
+from django.shortcuts import render, redirect
+from .form import OfferForm, CompetitionForm, UpdateCompetitionForm
+from .models import Offer, Competition
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+
 
 
 def home(request):
@@ -11,7 +13,7 @@ def home(request):
 def competition(request):
     return render(request, 'ecf_app/competition.html')
 
-# --- OFFER ---
+# --- OFFER: crud + ajax ---
 def offer(request):
     form = OfferForm()
     offers = Offer.objects.all().order_by('id')
@@ -82,4 +84,59 @@ def data_edit(request):
         return JsonResponse(offer_data)
 
         
-        
+    
+# ---  COMPETITION: crud ---
+def create_competition(request):
+    if request.method == 'POST':
+        form = CompetitionForm(request.POST, request.FILES)
+        # reuqest.FILES quand il y a un fochoer pou image dans le formulaire
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'La competition a été créée')
+            return redirect('list_competition')
+        else:
+
+            messages.warning(request, {form})
+            return redirect('home')
+
+    else:
+        form = CompetitionForm()
+        context = {'form': form}
+        return render(request, 'ecf_app/create_competition.html', context)
+
+def list_competition(request):
+    competitions = Competition.objects.all()
+    context = {'competitions': competitions}
+    return render(request, 'ecf_app/list_competition.html', context)
+
+def edit_competition(request, pk):
+    competition = Competition.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = UpdateCompetitionForm(request.POST, request.FILES, instance=competition)
+        # reuqest.FILES quand il y a un fochoer pou image dans le formulaire
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'La competition a été modifiée')
+            return redirect('list_competition')
+        else:
+
+            messages.warning(request, {form})
+            return redirect('home')
+
+    else:
+        form = UpdateCompetitionForm(instance=competition)
+        context = {'form': form}
+        return render(request, 'ecf_app/update_competition.html', context)
+
+    
+def delete_competition(request, pk):
+    competition = Competition.objects.get(pk=pk)
+    competition.delete()
+    return redirect('list_competition')
+
+def detail_competition(request, pk):
+    competition = Competition.objects.get(pk=pk)
+    context = {'competition': competition}
+    return render(request, 'ecf_app/detail_competition.html', context)

@@ -11,3 +11,11 @@ class Offer(models.Model):
         return self.name
     
 
+class Competition(models.Model):
+    title = models.CharField(max_length=50)
+    description = models.TextField()
+    place = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='uploads/competition/')    
+
+
+    

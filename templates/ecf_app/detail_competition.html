@@ -29,18 +29,27 @@
                 src="{{competition.image.url }}"
             />
             </div>
-            <div class="col-md-6 m-3">
-                <small class="text-muted">Compétition de </small>
-                <b>
-                    <p class="card-title">{{ competition.title }}</p>
-                </b>
+            <div class="col-md-6 mx-5">
+
+
+                        <small class="text-muted">Compétition de </small> 
+                        <p>
+                            {{ competition.title }}
+                        </p>
+
+                        <b>
+                            <small class="text-muted">Lieu </small>
+                            <p >{{ competition.place }}</p>
+                        </b>
+
                 <br>
-                <small class="text-muted">Lieu </small>
-                <p >{{ competition.place }}</p>
                 <small class="text-muted">Description </small>
                 <p class="card-text">
                     {{ competition.description }}
                 </p>
+                <br>
+                <button class="btn btn-outline-primary"><a href="{% url 'add_to_cart' competition.pk %}" style="text-decoration: none;">Panier</a></button>    
+            </div>
 
             </div>
         </div>

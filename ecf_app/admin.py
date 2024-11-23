@@ -1,3 +1,7 @@
 from django.contrib import admin
+from ecf_app.models import  Order, Cart, Competition, Offer
 
-# Register your models here.
+admin.site.register(Order)
+admin.site.register(Cart)
+admin.site.register(Competition)
+admin.site.register(Offer)

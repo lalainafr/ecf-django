@@ -1,0 +1,142 @@
+{% extends 'base.html' %} {% load static %} {% block heading%}
+<div class="text-muted p-5">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-white">
+            Cart
+        </h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
+            obcaecati aspernatur, soluta nemo placeat ipsum tempore saepe,
+            cupiditate deleniti a officia debitis quam id numquam veniam nisi
+            provident aperiam temporibus!
+        </p>
+    </div>
+</div>
+{% endblock heading%} {% block content %} {%load widget_tweaks%}
+<!-- Section-->
+<section>
+    <div class="container">
+
+        <p class="offer-style"> Réference: <small class="text-muted"> {{cart.cartUid}}</small></p>
+
+        <div class="col-md-10 ">
+            <form action="" method="POST"> 
+                {% csrf_token%}
+                <input type="hidden" name="offer_id" id="offer_id" value="{{cart.offer.id}}">
+                <p>> Choisir une offre</p>
+                <div class="floatingInput col-md-3 d-flex">
+                    {% render_field form.offer class="form-control" id="target-select" %} &nbsp;&nbsp;
+                    <button class="btn btn btn-info text-light" id="btn-choisir">Choisir</button>
+                </div>
+            </form>
+        </div>
+            <br />
+                    <p class="text-muted">
+                       > Liste des competitions commandées</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><b>
+                                    <small>
+                                        #
+                                    </small>
+                                </th>
+                                </b>
+                                <th scope="col"><b>
+                                    <small>
+                                        MATCH
+                                    </small>
+                                </b></th>
+                                <th scope="col"><b>
+                                    <small>
+                                        IMAGE
+                                    </small>
+                                </b></th>
+                                <th scope="col"><b>
+                                    <small>
+                                        LIEU
+                                    </small>
+                                </b></th>
+                                <th scope="col"><b>
+                                    <small>
+                                        PRIX
+                                    </small>
+                                </b></th>
+                                <th scope="col"><b>
+                                    <small>
+                                        OFFRE
+                                    </small>
+                                </b></th>
+                                <th scope="col"><b>
+                                    <small>
+                                        REMISE 
+                                    </small>
+                                </b></th>
+                    
+                                <th scope="col"><b>
+                                    <small>
+                                        POUR
+                                    </small>
+                                </b></th>
+                                <th scope="col"><b>
+                                    <small>
+                                        ACTION
+                                    </small>
+                                </b></th>
+                    
+                            </tr>
+                        </thead>
+                        <!-- id 'tbody' to change the content withthe ajax data  -->
+                        <tbody id="tbody">
+                            {% for order in cart.orders.all %}
+                            <tr>
+                                <td> <small>
+                                    {{order.id}}
+                                </small>
+                                </td>
+                                <td> <small>
+                                    {{order.competition}}
+                                </small>
+                                </td>
+                                
+                                <td> 
+        
+                                    <img
+                                    src="{{order.competition.image.url }}"
+                                    style="height: 40px;"
+                                    />
+                                
+                                </td>
+                                <td> <small>
+                                    {{order.competition.place}}
+                                </small>
+                                </td>   
+                                <td> <small>
+                                    prix de  la competition
+                                </small>
+                                </td>   
+                                <td> <small>
+                                    {{cart.offer}}
+                                </small>
+                                </td>   
+                                <td> <small>
+                                    {{cart.offer.discount}} %
+                                </small>
+                                </td>   
+                                <td> 
+                                    {{cart.offer.nbPers}} pers
+                                </td>   
+                                {% endfor %}
+                            </tr>
+        
+                        </tbody>
+                    </table>
+                </div>
+            
+
+            
+    </div>
+</section>
+{% endblock content %}
+<!-- Footer-->
+
+

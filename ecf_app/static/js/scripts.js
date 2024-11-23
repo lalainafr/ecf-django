@@ -138,3 +138,20 @@ $('#tbody').on("click", ".btn-edit", function() {
         },
     });
 })
+
+
+// --- MAJ SELECT LOS DU CHOIX DE L'OFFRE ---
+
+// On cible le select pour choisir une offre
+let select_item = document.getElementById('target-select')
+
+// On cible le id de l'offre choisie
+let id = document.getElementById('offer_id')
+
+// On selectionne le choix correspondant à l'id choisie
+select_item[id.value].selected = true;
+
+
+
+
+    

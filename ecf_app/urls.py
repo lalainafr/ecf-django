@@ -16,5 +16,9 @@ urlpatterns = [
     path('list-competition/', views.list_competition, name='list_competition'),
     path('edit-competition/<str:pk>', views.edit_competition, name='edit_competition'),
     path('delete-competition/<str:pk>', views.delete_competition, name='delete_competition'),
+    
+    # cart
+    path('competition/<str:pk>/add-to-cart/', views.add_to_cart, name='add_to_cart'),
+    path('cart/', views.cart, name='cart'),
 ]
 

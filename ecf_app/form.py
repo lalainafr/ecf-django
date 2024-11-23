@@ -1,4 +1,4 @@
-from .models import Offer, Competition
+from .models import Offer, Competition, Cart
 from django import forms
 
 class OfferForm(forms.ModelForm):
@@ -28,3 +28,9 @@ class UpdateCompetitionForm(forms.ModelForm):
           'description': forms.Textarea(attrs={'rows':4}),
         }
         
+class OfferChoiceForm(forms.ModelForm):
+    class Meta:
+        model = Cart
+        fields = ['offer']
+        
+    

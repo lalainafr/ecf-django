@@ -125,6 +125,11 @@
                                 <td> 
                                     {{cart.offer.nbPers}} pers
                                 </td>   
+                                <td>
+                                    <button class="btn btn-sm btn-danger">
+                                        <a href="{%  url 'remove_from_cart' order.id %}" class="text-light" style="text-decoration: none;">Supprimer</a>
+                                    </button>
+                                </td>
                                 {% endfor %}
                             </tr>
         
@@ -138,5 +143,3 @@
 </section>
 {% endblock content %}
 <!-- Footer-->
-
-

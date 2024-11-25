@@ -8,7 +8,6 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 
 
-
 def home(request):
     return render(request, 'ecf_app/home.html')
 
@@ -158,9 +157,8 @@ def add_to_cart(request, pk):
     # _ variable qui ne sera pas utilisée par la suite
     # ca ne nous interesse pas de savoir si le panier existe ou non
     # --> la competition sera créer qu'une seule fois dans le panier
-    
         
-    # si l'element existe dans le pânier de la bdd on l'incremente sinon on le rajoute dans le panier
+    # si l'element existe dans le pânier de la bdd on l'incremente sinon on le créer et le rajoute dans le panier
     # On récupère ORDER qui est associée à un user et qui correspont à la competition concernée
     order, created = Order.objects.get_or_create(user=user, competition = competition)
     # order: l'objet
@@ -195,5 +193,8 @@ def cart(request):
         context = {'cart': cart, 'form': form}
         return render(request, 'ecf_app/cart.html', context)
 
-
-   
+# remove order from the cart
+def remove_from_cart(request, pk):
+    order = Order.objects.filter(pk=pk, user=request.user)
+    order.delete()
+    return redirect('cart')

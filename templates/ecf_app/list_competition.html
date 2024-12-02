@@ -1,17 +1,15 @@
 {% extends 'base.html' %} {% load static %} {% block heading%}
 
-
-<div class="text-muted p-5">
-    <h1 class="display-3 fw-bold lh-1 mb-3 text-white">
-            Competition disponibles
-        </h1>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
-            obcaecati aspernatur, soluta nemo placeat ipsum tempore saepe,
-            cupiditate deleniti a officia debitis quam id numquam veniam nisi
-            provident aperiam temporibus!
-        </p>
-    </div>
+<div class="text-muted">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-dark">
+        Competition disponibles
+    </h1>
+    <p class="text-muted">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. In, obcaecati
+        aspernatur, soluta nemo placeat ipsum tempore saepe, cupiditate deleniti
+        a officia debitis quam id numquam veniam nisi provident aperiam
+        temporibus!
+    </p>
 </div>
 {% endblock heading%} {% block content %}
 <!-- Section-->
@@ -25,16 +23,15 @@
         nostrum provident excepturi sint aut vitae blanditiis iste inventore
         sequi officiis vel praesentium amet. Iste?
     </div>
-    <br>
+    <br />
     <div class="row justify-content-center">
         <a href="{% url 'create_competition' %}">Ajouter une compétition</a>
         {% for competition in competitions %}
         <div class="col-md-3 card m-3 p-3 shadow-lg" style="width: 15rem">
-            
             <img
-            class="card-img-top"
-            src="{{competition.image.url }}"
-            class="w-25 d-block rounded-5 shadow-sm p-2"
+                class="card-img-top"
+                src="{{competition.image.url }}"
+                class="w-25 d-block rounded-5 shadow-sm p-2"
             />
             <div class="card-body">
                 <small class="text-muted">{{ competition.place }}</small>
@@ -42,11 +39,14 @@
                 <p class="card-text">
                     {{ competition.description | slice:":60" }}...
                 </p>
-                <a href="{% url 'detail_competition' competition.id %}" class="btn btn-outline-primary">Detail</a>
+                <a
+                    href="{% url 'detail_competition' competition.id %}"
+                    class="btn btn-outline-primary"
+                    >Detail</a
+                >
             </div>
         </div>
         {% endfor %}
-        
     </div>
 </section>
 

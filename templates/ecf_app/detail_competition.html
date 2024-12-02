@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% block heading%}
 
 
-<div class="text-muted p-5">
-    <h1 class="display-3 fw-bold lh-1 mb-3 text-white">
+<div class="text-muted">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-dark">
             Détail 
         </h1>
         <p>
@@ -31,7 +31,6 @@
             </div>
             <div class="col-md-6 mx-5">
 
-
                         <small class="text-muted">Compétition de </small> 
                         <p>
                             {{ competition.title }}
@@ -41,13 +40,14 @@
                             <small class="text-muted">Lieu </small>
                             <p >{{ competition.place }}</p>
                         </b>
-
-                <br>
                 <small class="text-muted">Description </small>
                 <p class="card-text">
                     {{ competition.description }}
                 </p>
-                <br>
+                <small class="text-muted">Prix d'entrée</small>
+                <p class="card-text">
+                    {{ competition.price | floatformat:2}} €
+                </p>
                 <button class="btn btn-outline-primary"><a href="{% url 'add_to_cart' competition.pk %}" style="text-decoration: none;">Panier</a></button>    
             </div>
 

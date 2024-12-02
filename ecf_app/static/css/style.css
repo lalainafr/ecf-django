@@ -7,9 +7,10 @@
   }
 
 .heading-style{
-   background-image: url('/static/assets/img/paris.jpg');
-   background-repeat: no-repeat;
-   border-radius: 50%;
+   background-image: url('/static/assets/img/paris.png');
+   opacity: 50%;
+   height: 230px;
+   margin-bottom: 20px;
   }
 
 .offer-style{

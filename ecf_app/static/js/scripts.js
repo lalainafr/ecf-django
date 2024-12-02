@@ -140,18 +140,39 @@ $('#tbody').on("click", ".btn-edit", function() {
 })
 
 
-// --- MAJ SELECT LOS DU CHOIX DE L'OFFRE ---
+// --- CHOIX DE L'OFFRE ---
 
-// On cible le select pour choisir une offre
-let select_item = document.getElementById('target-select')
+$('#btn-choisir').click(function (e) { 
 
-// On cible le id de l'offre choisie
-let id = document.getElementById('offer_id')
+    e.preventDefault();
 
-// On selectionne le choix correspondant à l'id choisie
-select_item[id.value].selected = true;
+    // récuperer la valeur du select selectionné dans le formulaire
+    var selectElmt = document.getElementById("target-select");
+    var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
+    var textselectionne = selectElmt.options[selectElmt.selectedIndex].text;
+
+    //  mettre dans cet input hidden le id de l'offre selectionée qui sera récupéré dans le view ultérieurement
+    $('#offer_id').val(valeurselectionnee)
+
+    // récupérer le csrf tokent dans le formulaire
+    token = $("#offer-form").find('input[name=csrfmiddlewaretoken]').val()
 
 
+     $.ajax({
+        type: "post",
+        url: 'http://127.0.0.1:8000/cart', 
+        data: {
+            offer_id : valeurselectionnee,
+            csrfmiddlewaretoken: token,
+            
+            // sera récupéré dans le view
+            action: 'post'
+        },
 
+        success: function (response) {
+            console.log(response)
+        }
+    });
+});
 
     

@@ -150,4 +150,3 @@ EMAIL_PORT = '2525'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-

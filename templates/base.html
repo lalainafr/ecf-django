@@ -27,7 +27,7 @@
     </head>
     <body>
         {% include 'navbar.html' %}
-        <div class="container px-4 px-lg-5 mt-3">
+        <div class="container px-4 px-lg-5 mt-2">
             <!-- Navigation-->
 
             <div class="my-3">
@@ -36,10 +36,12 @@
                     {{message}}
                 </div>
                 {% endfor %} {% endif %} 
-                <div class="heading-style mb-3 rounded-4">
+                <div class="heading-style mb-3 rounded-4 p-5">
                     {%block heading%} {%endblock heading%}
                 </div>
-                {%block content%} {%endblock content%}
+                <div class="container m-2">
+                    {%block content%} {%endblock content%}
+                </div>
             </div>
             {% include 'footer.html' %}
         </div>

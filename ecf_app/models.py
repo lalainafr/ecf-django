@@ -9,8 +9,8 @@ User = get_user_model()
 class Offer(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
-    nbPers = models.IntegerField()
-    discount = models.IntegerField()
+    nbPers = models.IntegerField(default=1)
+    discount = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -20,13 +20,12 @@ class Competition(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
     place = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='uploads/competition/')    
+    image = models.ImageField(upload_to='uploads/competition/')
+    price = models.FloatField(default=0.00)    
     
     def __str__(self):
         return self.title
 
-
-    
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     competition = models.ForeignKey(Competition, on_delete=models.CASCADE)
@@ -45,3 +44,10 @@ class Cart(models.Model):
            
     def __str__(self):
         return self.user.firstname + ' ' +  self.user.lastname 
+
+
+    # methode afin de rajouter l'offre selectionée dans le panier
+    def add(self, offer):        
+        self.offer = offer
+    
+    

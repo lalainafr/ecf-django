@@ -6,6 +6,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from var_dump import var_dump
+from django.http import HttpResponse
+
 
 
 def home(request):
@@ -174,22 +177,25 @@ def add_to_cart(request, pk):
     return redirect('detail_competition', pk=pk) 
     
 def cart(request):
+    
     cart = get_object_or_404(Cart, user=request.user)
     
     # choix de l'offre (formulaire)
-    form = OfferChoiceForm()
-    if request.method == 'POST':
-        form = OfferChoiceForm(request.POST, instance=cart)
-        if form.is_valid():
-            form.save()
-            return redirect('cart')
-        else: 
-            messages.warning(request, 'Something went wrong')
-            return redirect('cart')
+    form = OfferChoiceForm(instance=cart)
+    # récuperer l'action dans le script ajax 
+    if request.POST.get('action') == 'post':
+        offer_id = request.POST['offer_id']
+        offer = get_object_or_404(Offer, id=offer_id)
+        cart.add(offer)
+        cart.save()
+        return JsonResponse({
+            
+        })
+
     else:
-        form = OfferChoiceForm()
+        form = OfferChoiceForm(instance=cart)
         cart = get_object_or_404(Cart, user=request.user)
-    
+
         context = {'cart': cart, 'form': form}
         return render(request, 'ecf_app/cart.html', context)
 

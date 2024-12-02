@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block heading%}
-<div class="text-muted p-5">
-    <h1 class="display-3 fw-bold lh-1 mb-3 text-white">
-            Cart
+<div class="text-muted">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-dark">
+            Panier
         </h1>
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
@@ -15,74 +15,76 @@
 <!-- Section-->
 <section>
     <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <p class="text-primary">
+                    <b>
+                        > Réference du panier:
+                    </b>
+                </p>
+                <p>
+                    <small class="text-muted"> {{cart.cartUid}}</small>
+                </p>
+                <br>
 
-        <p class="offer-style"> Réference: <small class="text-muted"> {{cart.cartUid}}</small></p>
-
-        <div class="col-md-10 ">
-            <form action="" method="POST"> 
-                {% csrf_token%}
-                <input type="hidden" name="offer_id" id="offer_id" value="{{cart.offer.id}}">
-                <p>> Choisir une offre</p>
-                <div class="floatingInput col-md-3 d-flex">
-                    {% render_field form.offer class="form-control" id="target-select" %} &nbsp;&nbsp;
-                    <button class="btn btn btn-info text-light" id="btn-choisir">Choisir</button>
+                <div class="col-md-12 ">
+                    <form action="" method="POST" id="offer-form"> 
+                        {% csrf_token %}
+                        <input type="hidden" name="offer_id" id="offer_id" value="1" >
+                        <p class="text-primary">
+                            <b>
+                                > Choisir une offre
+                            </b>
+                        </p>
+                        <div class="floatingInput col-md-6 d-flex">
+                            {% render_field form.offer class="form-control offer-choice" id="target-select" %} &nbsp;&nbsp;
+                            <button class="btn btn btn-info text-light" id="btn-choisir">Choisir</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-            <br />
-                    <p class="text-muted">
-                       > Liste des competitions commandées</p>
-                    <table class="table">
+                    <br />
+            </div>
+            <div class="col-md-8 ">
+                    <p class="text-primary">
+                        <b>
+                            > Liste des competitions commandées
+                        </b>
+                    
+                    </p>
+                    <table class="table shadow-lg p-5 rounded-4">
                         <thead>
                             <tr>
                                 <th scope="col"><b>
-                                    <small>
+                                    <small class="text-primary">
                                         #
                                     </small>
                                 </th>
                                 </b>
                                 <th scope="col"><b>
-                                    <small>
-                                        MATCH
+                                    <small class="text-primary">
+                                        Match
                                     </small>
                                 </b></th>
                                 <th scope="col"><b>
                                     <small>
-                                        IMAGE
+                                        
                                     </small>
                                 </b></th>
                                 <th scope="col"><b>
-                                    <small>
-                                        LIEU
+                                    <small class="text-primary">
+                                        Image
                                     </small>
                                 </b></th>
                                 <th scope="col"><b>
-                                    <small>
-                                        PRIX
+                                    <small class="text-primary">
+                                        Lieu
                                     </small>
                                 </b></th>
                                 <th scope="col"><b>
-                                    <small>
-                                        OFFRE
+                                    <small class="text-primary">
+                                        Prix
                                     </small>
                                 </b></th>
-                                <th scope="col"><b>
-                                    <small>
-                                        REMISE 
-                                    </small>
-                                </b></th>
-                    
-                                <th scope="col"><b>
-                                    <small>
-                                        POUR
-                                    </small>
-                                </b></th>
-                                <th scope="col"><b>
-                                    <small>
-                                        ACTION
-                                    </small>
-                                </b></th>
-                    
                             </tr>
                         </thead>
                         <!-- id 'tbody' to change the content withthe ajax data  -->
@@ -93,51 +95,119 @@
                                     {{order.id}}
                                 </small>
                                 </td>
-                                <td> <small>
+                                <td> <small class="text-muted">
                                     {{order.competition}}
-                                </small>
+                                </small> 
+                                </td>
+                                <td> <small>
+                                    <a href="{%  url 'remove_from_cart' order.id %}" class="text-danger" style="text-decoration: none;">Supprimer</a>
+                                </small> 
                                 </td>
                                 
                                 <td> 
         
                                     <img
                                     src="{{order.competition.image.url }}"
-                                    style="height: 40px;"
+                                    style="height: 3ch; border-radius: 50%; width: 30px;"
                                     />
                                 
                                 </td>
-                                <td> <small>
+                                <td> <small class="text-muted">
                                     {{order.competition.place}}
                                 </small>
-                                </td>   
-                                <td> <small>
-                                    prix de  la competition
+                            </td>   
+                            <td> <small id="price" class="text-muted">
+                                    {{order.competition.price|floatformat:2}} €
+                                    
                                 </small>
                                 </td>   
-                                <td> <small>
-                                    {{cart.offer}}
-                                </small>
-                                </td>   
-                                <td> <small>
-                                    {{cart.offer.discount}} %
-                                </small>
-                                </td>   
-                                <td> 
-                                    {{cart.offer.nbPers}} pers
-                                </td>   
-                                <td>
-                                    <button class="btn btn-sm btn-danger">
-                                        <a href="{%  url 'remove_from_cart' order.id %}" class="text-light" style="text-decoration: none;">Supprimer</a>
-                                    </button>
-                                </td>
-                                {% endfor %}
+   
                             </tr>
-        
+                            {% endfor %}
+                            
                         </tbody>
+                        <tfoot">
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <small class="text-primary">
+                                        Offre 
+                                    </small>
+                                </td>
+                                <td>
+                                    <small class="text-muted" id="selected-offer">
+                                        {{ cart.offer }}
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <small class="text-primary">
+                                        Valable pour 
+                                    </small>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        <span id="nbPers">
+                                            {{ cart.offer.nbPers }}
+                                        </span>
+                                         personne(s)
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <small class="text-primary">
+                                        Remise
+                                    </small>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        <span id="remise">
+                                            {{ cart.offer.discount }} 
+                                        </span> %
+                                    </small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <small class="text-primary">
+                                        TOTAL
+                                    </small>
+                                    <br>
+                                    <small class="text-primary">
+                                        Prix pour {{ cart.offer.nbPers}} avec la remise de {{cart.offer.discount}} %
+                                    </small>
+                                </td>
+                                <td>
+                                    <small id="total" class="text-muted">
+                                            100.00 €
+                                    </small>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             
-
+            </div>
+        </div>
             
     </div>
 </section>

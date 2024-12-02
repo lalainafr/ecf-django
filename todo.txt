@@ -8,8 +8,7 @@ implement offer select + dynamic update of the select according to the selected 
 message si cart est deja rajouté au panier
 
 view.delete_from_cart > remove order from the CART
-implement 
+
+Implement 
 - competiton price 
 - CART total > take into account the offer condition (discount, nbPers)
-
-

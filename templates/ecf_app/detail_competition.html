@@ -31,15 +31,15 @@
             </div>
             <div class="col-md-6 mx-5">
 
-                        <small class="text-muted">Compétition de </small> 
-                        <p>
-                            {{ competition.title }}
-                        </p>
+                <small class="text-muted">Compétition de </small> 
+                <p>
+                    {{ competition.title }}
+                </p>
 
-                        <b>
-                            <small class="text-muted">Lieu </small>
-                            <p >{{ competition.place }}</p>
-                        </b>
+                <b>
+                    <small class="text-muted">Lieu </small>
+                    <p >{{ competition.place }}</p>
+                </b>
                 <small class="text-muted">Description </small>
                 <p class="card-text">
                     {{ competition.description }}
@@ -48,7 +48,10 @@
                 <p class="card-text">
                     {{ competition.price | floatformat:2}} €
                 </p>
-                <button class="btn btn-outline-primary"><a href="{% url 'add_to_cart' competition.pk %}" style="text-decoration: none;">Panier</a></button>    
+                <form action="" method="post" id="form-panier">
+                    {% csrf_token %}
+                    <button id="btn-panier" value={{competition.id}} class="btn btn-outline-primary"><a href="{% url 'add_to_cart' competition.pk %}" style="text-decoration: none;">Panier</a></button>    
+                </form>
             </div>
 
             </div>

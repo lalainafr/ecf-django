@@ -18,7 +18,7 @@ urlpatterns = [
     path('delete-competition/<str:pk>', views.delete_competition, name='delete_competition'),
     
     # cart
-    path('competition/<str:pk>/add-to-cart/', views.add_to_cart, name='add_to_cart'),
+    path('detail-competition/competition/<str:pk>/add-to-cart/', views.add_to_cart, name='add_to_cart'),
     
     path('cart', views.cart, name='cart'),
     

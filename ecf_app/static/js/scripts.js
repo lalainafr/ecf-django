@@ -175,4 +175,35 @@ $('#btn-choisir').click(function (e) {
     });
 });
 
-    
+// --- ADD TO CART  ---
+
+$('#btn-panier').click(function (e) { 
+
+    e.preventDefault();
+
+    competition_id = $('#btn-panier').val()
+
+    // récupérer le csrf tokent dans le formulaire
+    token = $("#form-panier").find('input[name=csrfmiddlewaretoken]').val()
+
+
+     $.ajax({
+        type: "POST",
+        url: 'competition/'+ competition_id + '/add-to-cart/', 
+        data: {
+            competition_id: competition_id,
+            csrfmiddlewaretoken: token,
+            
+            // sera récupéré dans le view
+            action: 'post-add-to-cart'
+        },
+
+        success: function (response) {
+            let output = "<div class='alert alert-success role='alert'>" + response['status'] + "</div>"
+            $('#message-content-ajax').html(output)
+        }
+    });
+});
+
+
+

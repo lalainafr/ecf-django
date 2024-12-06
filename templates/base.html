@@ -31,11 +31,18 @@
             <!-- Navigation-->
 
             <div class="my-3">
+
                 {% if messages %} {% for message in messages %}
                 <div class="alert alert-{{message.tags}}" role="alert">
                     {{message}}
                 </div>
-                {% endfor %} {% endif %} 
+                {% endfor %} 
+                {% else %} 
+                <div id="message-content-ajax">                
+                </div>
+    
+                {% endif %} 
+                
                 <div class="heading-style mb-3 rounded-4 p-5">
                     {%block heading%} {%endblock heading%}
                 </div>

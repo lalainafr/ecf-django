@@ -150,40 +150,45 @@ def detail_competition(request, pk):
 def add_to_cart(request, pk):
     user = request.user
     
-    # --> récupérer la competition concernée à parti de son id
-    # s'il existe on le récupère sinon on aura une erreur 404
-    competition = get_object_or_404(Competition, pk=pk)
-    
-    # --> on récupére le CART (panier) appartenant à un utilisateur s'il existe sinon on le crée en associant le panier à l'utilisateur
-    # retourne 2 elments: l'objet - un boolean pour savoir s'il l'objet a été crée ou non
-    cart, _ = Cart.objects.get_or_create(user=user)
-    # _ variable qui ne sera pas utilisée par la suite
-    # ca ne nous interesse pas de savoir si le panier existe ou non
-    # --> la competition sera créer qu'une seule fois dans le panier
+    if request.POST.get('action') == 'post-add-to-cart':
+
         
-    # si l'element existe dans le pânier de la bdd on l'incremente sinon on le créer et le rajoute dans le panier
-    # On récupère ORDER qui est associée à un user et qui correspont à la competition concernée
-    order, created = Order.objects.get_or_create(user=user, competition = competition)
-    # order: l'objet
-    # created: bool pour savoir si l'element a été crée ou non
+        competition_id = request.POST.get('competition_id')
+        # --> récupérer la competition concernée à parti de son id
+        # s'il existe on le récupère sinon on aura une erreur 404
+        competition = get_object_or_404(Competition, pk=competition_id)
+        
+        # --> on récupére le CART (panier) appartenant à un utilisateur s'il existe sinon on le crée en associant le panier à l'utilisateur
+        # retourne 2 elments: l'objet - un boolean pour savoir s'il l'objet a été crée ou non
+        cart, _ = Cart.objects.get_or_create(user=user)
+        # _ variable qui ne sera pas utilisée par la suite
+        # ca ne nous interesse pas de savoir si le panier existe ou non
+        # --> la competition sera créer qu'une seule fois dans le panier
+            
+        # si l'element existe dans le pânier de la bdd on l'incremente sinon on le créer et le rajoute dans le panier
+        # On récupère ORDER qui est associée à un user et qui correspont à la competition concernée
+        order, created = Order.objects.get_or_create(user=user, competition = competition)
+        # order: l'objet
+        # created: bool pour savoir si l'element a été crée ou non
 
-    if created:
-    # cela veut dire qu'il n'existe pas encore dans le panier, donc il faudra le créer (avec l'element qu'on a récupérer: 'order')   
-        cart.orders.add(order)
-        order.ordered = True       
-        order.save()      
-    else:
-        order.quantity += 1
-        order.save()  
-        messages.success(request, 'Element déjà rajouté dans le panier')
+        if created:
+        # cela veut dire qu'il n'existe pas encore dans le panier, donc il faudra le créer (avec l'element qu'on a récupérer: 'order')   
+            cart.orders.add(order)
+            order.ordered = True       
+            order.save()      
+            return JsonResponse({'status': "L'element est rajouté dans le panier"})
+        else:
+            order.quantity += 1
+            order.save()  
+            messages.success(request, '')
+            return JsonResponse({'status': "L'element est déjà dans le panier"})
 
-    # created == false -> l'element existe déja > il faut juste incrementer sa quantité   
-    return redirect('detail_competition', pk=pk) 
-    
+        # created == false -> l'element existe déja > il faut juste incrementer sa quantité     
+            
 def cart(request):
     
     cart = get_object_or_404(Cart, user=request.user)
-    
+        
     # choix de l'offre (formulaire)
     form = OfferChoiceForm(instance=cart)
     # récuperer l'action dans le script ajax 

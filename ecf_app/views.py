@@ -170,10 +170,14 @@ def add_to_cart(request, pk):
     if created:
     # cela veut dire qu'il n'existe pas encore dans le panier, donc il faudra le créer (avec l'element qu'on a récupérer: 'order')   
         cart.orders.add(order)
-    else:
-    # created == false -> l'element existe déja > il faut juste incrementer sa quantité   
-        order.quanity += 1
+        order.ordered = True       
         order.save()      
+    else:
+        order.quantity += 1
+        order.save()  
+        messages.success(request, 'Element déjà rajouté dans le panier')
+
+    # created == false -> l'element existe déja > il faut juste incrementer sa quantité   
     return redirect('detail_competition', pk=pk) 
     
 def cart(request):

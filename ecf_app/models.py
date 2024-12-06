@@ -29,9 +29,8 @@ class Competition(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     competition = models.ForeignKey(Competition, on_delete=models.CASCADE)
-    quanity = models.IntegerField(default=1) 
     ordered = models.BooleanField(default=False)
-    ordered_date = models.DateTimeField(blank=True, null=True)
+    quantity = models.IntegerField(default=1)
 
     def __str__(self):
         return str(self.competition.title)
@@ -43,11 +42,14 @@ class Cart(models.Model):
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE, blank=True, null=True)
            
     def __str__(self):
-        return self.user.firstname + ' ' +  self.user.lastname 
+        return self.user.first_name + ' ' +  self.user.last_name 
 
 
     # methode afin de rajouter l'offre selectionée dans le panier
     def add(self, offer):        
         self.offer = offer
+        
+    def getTotalOrders(self):
+        return self.orders.count()
     
     

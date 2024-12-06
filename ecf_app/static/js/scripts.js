@@ -205,5 +205,36 @@ $('#btn-panier').click(function (e) {
     });
 });
 
+// DELETE FROM CART
+$('#tbody-ajax').on("click", ".btn-del-ajax", function() {
+
+    // récuperer le id de l'offre à partir du 'data-sid'
+    let order_id = $(this).attr("data-id")
+
+    mydata = 
+
+    mythis = $(this);
+    // <input type="button" value="remove" class=" btn-del-ajax btn btn-sm btn-outline-danger rounded-4 text-danger" data-id="38">
+
+    token = $("#remove-form").find('input[name=csrfmiddlewaretoken]').val()
+
+    // appel AJAX
+    $.ajax({
+        method: "POST",
+        url: 'http://127.0.0.1:8000/remove-from-cart/'+ order_id,        
+        data: {
+            order_id:order_id,
+            csrfmiddlewaretoken: token,
+            action: 'remove-from-cart-ajax'
+        },
+
+        success: function (response) {
+            $(mythis).closest("tr").fadeOut();
+            let output = "<div class='alert alert-success role='alert'>" + response['status'] + "</div>"
+            $('#message-content-ajax').html(output)
+
+        }
+    });
+});
 
 

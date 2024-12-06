@@ -151,7 +151,6 @@ def add_to_cart(request, pk):
     user = request.user
     
     if request.POST.get('action') == 'post-add-to-cart':
-
         
         competition_id = request.POST.get('competition_id')
         # --> récupérer la competition concernée à parti de son id
@@ -176,12 +175,12 @@ def add_to_cart(request, pk):
             cart.orders.add(order)
             order.ordered = True       
             order.save()      
-            return JsonResponse({'status': "L'element est rajouté dans le panier"})
+            return JsonResponse({'status': " Element rajouté dans le panier"})
         else:
             order.quantity += 1
             order.save()  
             messages.success(request, '')
-            return JsonResponse({'status': "L'element est déjà dans le panier"})
+            return JsonResponse({'status': "Element déja dans le panier"})
 
         # created == false -> l'element existe déja > il faut juste incrementer sa quantité     
             
@@ -210,6 +209,10 @@ def cart(request):
 
 # remove order from the cart
 def remove_from_cart(request, pk):
-    order = Order.objects.filter(pk=pk, user=request.user)
-    order.delete()
-    return redirect('cart')
+    
+    if request.POST.get('action') == 'remove-from-cart-ajax':
+        id = request.POST.get('order_id')
+        order = Order.objects.get(pk=id)
+        order.delete()
+        return JsonResponse({'status':"Element supprimé du panier"})
+

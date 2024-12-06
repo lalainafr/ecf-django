@@ -43,8 +43,8 @@
                     </form>
                 </div>
                 <br><br>
-                <div>
-                    Il y a {{cart.getTotalOrders}} elements commandés dans le panier
+                <div class="text-muted">
+                    Il y a <b>{{cart.getTotalOrders}}</b> elements commandés dans le panier
                 </div>
                     <br />
             </div>
@@ -92,22 +92,26 @@
                             </tr>
                         </thead>
                         <!-- id 'tbody' to change the content withthe ajax data  -->
-                        <tbody id="tbody">
+                        <tbody id="tbody-ajax">
                             {% for order in cart.orders.all %}
                             <tr>
                                 <td> <small>
                                     {{order.id}}
                                 </small>
                                 </td>
-                                <td> <small class="text-muted">
+                                <td class="text-muted">
                                     {{order.competition}}
-                                </small> 
                                 </td>
-                                <td> <small>
-                                    <a href="{%  url 'remove_from_cart' order.id %}" class="text-danger" style="text-decoration: none;">Supprimer</a>
-                                </small> 
+                                <td>
+                                    <form action="" method="POST" id="remove-form">
+                                        {% csrf_token %}
+                                    <input 
+                                        type="button" 
+                                        value="remove"
+                                        class=" btn-del-ajax btn btn-sm btn-outline-danger rounded-4 text-danger" data-id="{{order.id}}">
+                                    </form>
                                 </td>
-                                
+                                s
                                 <td> 
         
                                     <img

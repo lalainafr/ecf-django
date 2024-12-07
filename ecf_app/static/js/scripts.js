@@ -170,7 +170,12 @@ $('#btn-choisir').click(function (e) {
         },
 
         success: function (response) {
-            console.log(response)
+        // mettre a jour l'offre choisie dans le panier en fonction du choix de l'utilisateur
+          let offer = response.offer_values[0]
+          $('#selected-offer-name').text(offer.name)
+          $('.selected-offer-nbPers').text(offer.nbPers)
+          $('.selected-offer-remise').text(offer.discount)
+
         }
     });
 });

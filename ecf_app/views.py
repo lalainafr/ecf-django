@@ -196,8 +196,12 @@ def cart(request):
         offer = get_object_or_404(Offer, id=offer_id)
         cart.add(offer)
         cart.save()
+        
+        # renvoyer dans le front en json les données de l'offre choisies 
+        offer_values = Offer.objects.filter(pk=offer_id).values()
+
         return JsonResponse({
-            
+            'offer_values':list(offer_values)
         })
 
     else:

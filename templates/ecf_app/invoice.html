@@ -1,0 +1,188 @@
+{% extends 'base.html' %} {% load static %} {% block heading%}
+<div class="text-muted">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-dark">
+        Facture
+    </h1>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
+        obcaecati aspernatur, soluta nemo placeat ipsum tempore saepe,
+        cupiditate deleniti a officia debitis quam id numquam veniam nisi
+        provident aperiam temporibus!
+    </p>
+</div>
+</div>
+{% endblock heading%} {% block content %} {%load widget_tweaks%}
+<!-- Section-->
+<br>
+<section>
+    <div class="container">
+        <div>
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="text-primary shadow p-3">
+                        Réference du panier: <br>
+                        <small class="text-muted shadow-sm text-petit">{{cart.cartUid}}</small>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-primary shadow p-3">
+                        Client: <br>
+                        <small class="text-muted shadow-sm text-petit">{{cart.user.last_name}} {{cart.user.first_name}}</small>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-primary shadow p-3">
+                        Identification: <br>
+                        <small class="text-muted shadow-sm text-petit">{{cart.user.userUid}}</small>
+                    </p>
+                    <br>
+                </div>
+            </div>
+
+            <div class="shadow-lg p-3 rounded-4">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"><b>
+                                    <small class="text-primary">
+                                        #
+                                    </small>
+                            </th>
+                            </b>
+                            <th scope="col"><b>
+                                    <small class="text-primary">
+                                        MATCH
+                                    </small>
+                                </b></th>
+                            <th scope="col"><b>
+                                    <small class="text-primary">
+                                        DESCRIPTION
+                                    </small>
+                                </b></th>
+                            <th scope="col" class="text-center"><b>
+                                    <small class="text-primary">
+                                        LIEU
+                                    </small>
+                                </b></th>
+                            <th scope="col" class="text-center"><b>
+                                    <small class="text-primary">
+                                        QTE
+                                    </small>
+                                </b></th>
+                            <th scope="col" class="text-center"><b>
+                                    <small class="text-primary">
+                                        PU
+                                    </small>
+                                </b></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for order in cart.orders.all %}
+                        <tr>
+                            <td> <small>
+                                    {{order.id}}
+                                </small>
+                            </td>
+                            <td class="text-muted col-md-2">
+                                {{order.competition}}
+                            </td>
+                            <td class="col-md-4"> <small class="text-muted ">
+                                    {{order.competition.description}}
+                                </small>
+                            </td>
+                            <td class="col-md-2 text-center"> <small class="text-muted ">
+                                    {{order.competition.place}}
+                                </small>
+                            </td>
+                            <td class="col-md-1 text-center"> <small class="text-muted"">
+                                    {{cart.offer.nbPers}} personne(s)
+                                </small>
+                            </td>
+                            
+                            <td class=" text-center"> <small class="text-muted">
+                                        {{order.competition.price|floatformat:2}}
+
+                                    </small>
+                                    €
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+
+                        <!-- remise  -->
+                        <tr>
+                            <td> <small>
+
+                                </small>
+                            </td>
+                            <td class="text-muted col-md-2">
+
+                            </td>
+                            <td class="col-md-4"> <small class="text-muted ">
+
+                                </small>
+                            </td>
+                            <td class="col-md-2"> <small class="text-muted ">
+
+                                </small>
+                            </td>
+
+                            <td class="text-center"> <small class="text-muted col-md-1">
+                                    REMISE
+
+                                </small>
+
+                            </td>
+                            <td class="text-center"> <small class="text-muted ">
+                                    {{cart.offer.discount}} %
+                                </small>
+
+                            </td>
+
+                        </tr>
+                        <!-- total  -->
+                        <tr>
+                            <td> <small>
+
+                                </small>
+                            </td>
+                            <td class="text-muted col-md-2">
+
+                            </td>
+                            <td class="col-md-4"> <small class="text-muted ">
+
+                                </small>
+                            </td>
+                            <td class="col-md-2"> <small class="text-muted ">
+
+                                </small>
+                            </td>
+
+                            <td class="text-center"> <small class="text-muted col-md-1">
+                                    TOTAL
+                                </small>
+
+                            </td>
+                            <td class="text-center shadow"> <small class="text-muted">
+                                    {{cart.total|floatformat:2}} €
+                                </small>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <div class="float-end">
+                <button class="btn btn btn-outline-info rounded-4 btn-petit text-secondary"
+                    id="btn-choisir">PAYER</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+{% endblock content %}
+<!-- Footer-->

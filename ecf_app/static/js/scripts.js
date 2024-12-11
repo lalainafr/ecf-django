@@ -255,8 +255,7 @@ $('#tbody-ajax').on("click", ".btn-del-ajax", function() {
 });
 
 
-$('#rafraichir-btn').click(function () { 
-    $('#total').text('')
-});
-
+// $('#rafraichir-btn').click(function () { 
+//     $('#total').text('')
+// });
 

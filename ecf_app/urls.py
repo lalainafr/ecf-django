@@ -23,5 +23,7 @@ urlpatterns = [
     path('cart', views.cart, name='cart'),
     
     path('remove-from-cart/<str:pk>', views.remove_from_cart, name='remove_from_cart'),
+    
+    path('invoice', views.invoice, name='invoice'),
 ]
 

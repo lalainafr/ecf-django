@@ -242,3 +242,7 @@ def remove_from_cart(request, pk):
         order.delete()
         return JsonResponse({'status':"Element supprimé du panier. Merci de rafraichir la page et choisir une offre pour avoir le total"})
 
+def invoice(request):
+    cart  = Cart.objects.get(user=request.user)
+    context={'cart': cart}
+    return render(request, 'ecf_app/invoice.html', context)

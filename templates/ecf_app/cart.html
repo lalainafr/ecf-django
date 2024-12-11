@@ -1,19 +1,19 @@
 {% extends 'base.html' %} {% load static %} {% block heading%}
 <div class="text-muted">
     <h1 class="display-3 fw-bold lh-1 mb-3 text-dark">
-            Panier
-        </h1>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
-            obcaecati aspernatur, soluta nemo placeat ipsum tempore saepe,
-            cupiditate deleniti a officia debitis quam id numquam veniam nisi
-            provident aperiam temporibus!
-        </p>
-    </div>
+        Panier
+    </h1>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
+        obcaecati aspernatur, soluta nemo placeat ipsum tempore saepe,
+        cupiditate deleniti a officia debitis quam id numquam veniam nisi
+        provident aperiam temporibus!
+    </p>
+</div>
 </div>
 {% endblock heading%} {% block content %} {%load widget_tweaks%}
 <!-- Section-->
- <br>
+<br>
 <section>
     <div class="container">
         <div class="row">
@@ -23,45 +23,45 @@
                     <small class="text-muted shadow-sm">{{cart.cartUid}}</small>
                 </p>
                 <br>
-                    <p class="text-primary">
-                        > Liste des competitions commandées 
-                    </p>
-                    <div class="shadow-lg p-3 rounded-4">
+                <p class="text-primary">
+                    > Liste des competitions commandées
+                </p>
+                <div class="shadow-lg p-3 rounded-4">
 
-                    <table  class="table">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col"><b>
-                                    <small class="text-primary">
-                                        #
-                                    </small>
+                                        <small class="text-primary">
+                                            #
+                                        </small>
                                 </th>
                                 </b>
                                 <th scope="col"><b>
-                                    <small class="text-primary">
-                                        MATCH
-                                    </small>
-                                </b></th>
+                                        <small class="text-primary">
+                                            MATCH
+                                        </small>
+                                    </b></th>
                                 <th scope="col"><b>
-                                    <small>
-                                        
-                                    </small>
-                                </b></th>
+                                        <small>
+
+                                        </small>
+                                    </b></th>
                                 <th scope="col"><b>
-                                    <small class="text-primary">
-                                        IMAGE
-                                    </small>
-                                </b></th>
+                                        <small class="text-primary">
+                                            IMAGE
+                                        </small>
+                                    </b></th>
                                 <th scope="col"><b>
-                                    <small class="text-primary">
-                                        LIEU
-                                    </small>
-                                </b></th>
+                                        <small class="text-primary">
+                                            LIEU
+                                        </small>
+                                    </b></th>
                                 <th scope="col"><b>
-                                    <small class="text-primary">
-                                        PU
-                                    </small>
-                                </b></th>
+                                        <small class="text-primary">
+                                            PU
+                                        </small>
+                                    </b></th>
                             </tr>
                         </thead>
                         <!-- id 'tbody' to change the content withthe ajax data  -->
@@ -69,8 +69,8 @@
                             {% for order in cart.orders.all %}
                             <tr>
                                 <td> <small>
-                                    {{order.id}}
-                                </small>
+                                        {{order.id}}
+                                    </small>
                                 </td>
                                 <td class="text-muted">
                                     {{order.competition}}
@@ -78,35 +78,32 @@
                                 <td>
                                     <form action="" method="POST" id="remove-form">
                                         {% csrf_token %}
-                                    <input 
-                                        type="button" 
-                                        value="remove"
-                                        class=" btn-del-ajax btn btn-sm btn-outline-warning rounded-4 text-secondary btn-petit" data-id="{{order.id}}">
+                                        <input type="button" value="remove"
+                                            class=" btn-del-ajax btn btn-sm btn-outline-warning rounded-4 text-secondary btn-petit"
+                                            data-id="{{order.id}}">
                                     </form>
                                 </td>
-                        
-                                <td> 
-        
-                                    <img
-                                    src="{{order.competition.image.url }}"
-                                    style="height: 4ch; border-radius: 50%; width: 40px;"
-                                    />
-                                
+
+                                <td>
+
+                                    <img src="{{order.competition.image.url }}"
+                                        style="height: 4ch; border-radius: 50%; width: 40px;" />
+
                                 </td>
                                 <td> <small class="text-muted">
-                                    {{order.competition.place}}
-                                </small>
-                            </td>   
-                            <td> <small class="text-muted price">
-                                    {{order.competition.price|floatformat:2}} 
-                                    
-                                </small>
-                                €
-                                </td>   
-   
+                                        {{order.competition.place}}
+                                    </small>
+                                </td>
+                                <td> <small class="text-muted price">
+                                        {{order.competition.price|floatformat:2}}
+
+                                    </small>
+                                    €
+                                </td>
+
                             </tr>
                             {% endfor %}
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -114,38 +111,42 @@
                 <div class="float-end small-text">
                     Il y a <b>{{cart.getTotalOrders}}</b> element(s) commandés dans le panier
                 </div>
-                    
-    </div>
+
+                <div>
+                    <a href="{% url 'invoice' %}" class="btn btn btn-outline-info rounded-4 btn-petit text-secondary">Facture</a>
+                </div>
+            </div>
             <div class="col-md-3 px-3 mx-4">
-                
-                <p >
+
+                <p>
                     <span class="text-primary">
                         > Choisir une offre
                     </span>
-                    <br> 
+                    <br>
                 </p>
                 <div class="shadow p-3">
-                    <form action="" method="POST" id="offer-form"> 
+                    <form action="" method="POST" id="offer-form">
                         {% csrf_token %}
-                        <input type="hidden" name="offer_id" id="offer_id" value="1" >
-                      
+                        <input type="hidden" name="offer_id" id="offer_id" value="1">
+
                         <div class="floatingInput col-md-9 d-flex">
-                            {% render_field form.offer class="form-control text-muted offer-choice" id="target-select" %} &nbsp;&nbsp;
-                            <button class="btn btn btn-outline-info rounded-4 btn-petit text-secondary" id="btn-choisir" >Choisir</button>
+                            {% render_field form.offer class="form-control text-muted offer-choice" id="target-select"%} &nbsp;&nbsp;
+                            <button class="btn btn btn-outline-info rounded-4 btn-petit text-secondary"
+                                id="btn-choisir">Choisir</button>
                         </div>
                         <br>
                         <small class="text-muted small-text">
-                            Après la suppression et le rajout d'une commande, reconfirmer le choix de l'offre 
+                            Après la suppression et le rajout d'une commande, reconfirmer le choix de l'offre
                         </small>
                     </form>
                 </div>
                 <br><br>
-                <div> 
+                <div>
                     <p>
-                        <small class="text-secondary">       
-                            Valable pour 
+                        <small class="text-secondary">
+                            Valable pour
                         </small>
-                    </p>                   
+                    </p>
                     <p class="shadow-lg p-2 rounded-4">
                         <small class="text-muted">
                             <span class="selected-offer-nbPers">
@@ -153,43 +154,41 @@
                             </span>
                             personne(s)
                         </small>
-                    </p>                    
-                <p>
-                    <small class="text-secondary">
-                        Remise
-                    </small>
-                </p>                    
-                <p class="shadow-lg p-2 rounded-4">
-                    <small class="text-muted">
-                        <span class="selected-offer-remise">
-                            ...
-                        </span> %
-                    </small>
-                </p>                             
-                <br>
-            <p>
-                <small class="text-primary">
-                    TOTAL - 
-                </small>
-                <small class="text-secondary small-text">
-                    Prix pour <span class="selected-offer-nbPers"></span> avec la remise de <span class="selected-offer-remise"></span> %
-                </small>
-            </p>
-            <p class="shadow-lg p-2 rounded-4">
-                <small id="total" class="text-muted">
-                    {{cart.total}} 
-                </small> €
-            </p>           
-    </div>         
-        <br />
-</div>
-            
-</div>
-            
+                    </p>
+                    <p>
+                        <small class="text-secondary">
+                            Remise
+                        </small>
+                    </p>
+                    <p class="shadow-lg p-2 rounded-4">
+                        <small class="text-muted">
+                            <span class="selected-offer-remise">
+                                ...
+                            </span> %
+                        </small>
+                    </p>
+                    <br>
+                    <p>
+                        <small class="text-primary">
+                            TOTAL -
+                        </small>
+                        <small class="text-secondary small-text">
+                            Prix pour <span class="selected-offer-nbPers"></span> avec la remise de <span
+                                class="selected-offer-remise"></span> %
+                        </small>
+                    </p>
+                    <p class="shadow-lg p-2 rounded-4">
+                        <small id="total" class="text-muted">
+                            {{cart.total}}
+                        </small> €
+                    </p>
+                </div>
+                <br />
+            </div>
+
+        </div>
+
     </div>
 </section>
 {% endblock content %}
 <!-- Footer-->
-
-
- 

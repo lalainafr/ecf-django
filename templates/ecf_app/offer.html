@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block heading%}
 <div class="text-muted">
-    <h1 class="display-3 fw-bold lh-1 mb-3 text-dark">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-secondary">
+       <i class="fa-solid fa-circle-chevron-right fa-xs text-light"></i>
             Offres disponibles
         </h1>
         <p>
@@ -16,9 +17,11 @@
 <section class="container">
     <div class="row mt-4">
         <div class="col-md-5">
-            <p class="text-primary">> Ajouter une offre</p>
+            <p class="text-info">
+                <i class="fa-solid fa-circle-arrow-right"></i> 
+                 Ajouter une offre</p>
             <br />
-            <div class="w-75 borde rounded-4 shadow-lg p-4">
+            <div class="w-75 border rounded-4 shadow-lg p-4">
                 <!-- Specifier la methode POST -->
                 <form action="" method="POST">
                     {% csrf_token%}
@@ -52,7 +55,7 @@
                     </div>
                     <input
                         type="button"
-                        class="btn btn-outline-primary rounded-4"
+                        class="btn btn-outline-info rounded-4 text-secondary text-petit"
                         value="Save"
                         id="btn-save"
                     />
@@ -60,32 +63,46 @@
             </div>
         </div>
         <div class="col-md-7">
-            <p class="text-primary">> Liste des offres disponibles</p>
-            <p>
-                <small class="text-muted"> La liste est mis a jour dynamiquement sans rechargement de la page grace à l'appel ajax...</small>
+            
+            <p class="text-info">
+                <i class="fa-solid fa-circle-arrow-right"></i> 
+                Liste des offres disponibles
+                <br>
+                <small class="text-petit"> La liste est mise a jour dynamiquement sans rechargement de la page grace à l'appel ajax...</small>
             </p>
-            <br />
-            <div class="shadow-sm p-3">
+            <div class="shadow p-3">
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col"><b>
-                            #</th>
+                            <small>
+                                #</th>
+                            </small>
                         </b>
                         <th scope="col"><b>
-                            Nom
+                            <small>
+                                NOM
+                            </small>
                         </b></th>
                         <th scope="col"><b>
-                            Description
+                            <small>
+                                DESCRIPTION
+                            </small>
                         </b></th>
                         <th scope="col"><b>
-                            Nb pers
+                            <small>
+                                NB PERS
+                            </small>
                         </b></th>
                         <th scope="col"><b>
-                            Remise
+                            <small>
+                                REMISE
+                            </small>
                         </b></th>
                         <th scope="col"><b>
-                            Action
+                            <small>
+                                ACTION
+                            </small>
                         </b></th>
                     </tr>
                 </thead>
@@ -93,11 +110,26 @@
                 <tbody id="tbody">
                     {% for offer in offers %}
                     <tr>
-                        <th scope="row">{{offer.id}}</th>
-                        <td>{{offer.name}}</td>
-                        <td>{{offer.description}}</td>
-                        <td>{{offer.nbPers}}</td>
-                        <td>{{offer.discount}}</td>
+                        <th scope="row">
+                            <small>
+                                {{offer.id}}
+                            </small></th>
+                        <td>
+                            <small>
+                                {{offer.name}}
+                            </small></td>
+                        <td>
+                            <small>
+                                {{offer.description}}
+                            </small></td>
+                        <td>
+                            <small>
+                                {{offer.nbPers}}
+                            </small></td>
+                        <td>
+                            <small>
+                                {{offer.discount}}
+                            </small></td>
                         <td>
                             <input
                                 type="button"

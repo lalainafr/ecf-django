@@ -50,14 +50,12 @@
                 </p>
                 <form action="" method="post" id="form-panier">
                     {% csrf_token %}
-                    <button id="btn-panier" value={{competition.id}} class="btn btn-outline-primary"><a href="{% url 'add_to_cart' competition.pk %}" style="text-decoration: none;">Panier</a></button>    
+                    <button id="btn-panier" value={{competition.id}} class="btn btn-outline-info btn-sm rounded-4"><a href="{% url 'add_to_cart' competition.pk %}" style="text-decoration: none;" class="text-secondary text-petit">Panier</a></button>    
                 </form>
             </div>
 
             </div>
         </div>
-
-        
     </div>
 </section>
 

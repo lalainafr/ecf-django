@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block heading%}
 <div class="text-muted">
-    <h1 class="display-3 fw-bold lh-1 mb-3 text-dark">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-secondary">
+       <i class="fa-solid fa-circle-chevron-right fa-xs text-light"></i>
         Facture
     </h1>
     <p>
@@ -20,18 +21,25 @@
             <div class="row">
                 <div class="col-md-4">
                     <p class="text-primary shadow p-3">
+                        <i class="fa-solid fa-circle-arrow-right"></i>
+
                         Réference du panier: <br>
                         <small class="text-muted shadow-sm text-petit">{{cart.cartUid}}</small>
                     </p>
                 </div>
                 <div class="col-md-4">
                     <p class="text-primary shadow p-3">
+                        <i class="fa-solid fa-circle-arrow-right"></i>
+
                         Client: <br>
-                        <small class="text-muted shadow-sm text-petit">{{cart.user.last_name}} {{cart.user.first_name}}</small>
+                        <small class="text-muted shadow-sm text-petit">{{cart.user.last_name}}
+                            {{cart.user.first_name}}</small>
                     </p>
                 </div>
                 <div class="col-md-4">
                     <p class="text-primary shadow p-3">
+                        <i class="fa-solid fa-circle-arrow-right"></i>
+
                         Identification: <br>
                         <small class="text-muted shadow-sm text-petit">{{cart.user.userUid}}</small>
                     </p>
@@ -161,6 +169,7 @@
                             </td>
 
                             <td class="text-center"> <small class="text-muted col-md-1">
+                                    <i class="fa-solid fa-circle-arrow-right"></i>
                                     TOTAL
                                 </small>
 
@@ -175,6 +184,7 @@
             </div>
             <br>
             <div class="float-end">
+                <i class="fa-brands fa-cc-amazon-pay fa-xl text-secondary"></i> &nbsp;
                 <button class="btn btn btn-outline-info rounded-4 btn-petit text-secondary"
                     id="btn-choisir">PAYER</button>
             </div>

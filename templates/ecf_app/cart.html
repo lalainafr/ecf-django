@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block heading%}
 <div class="text-muted">
-    <h1 class="display-3 fw-bold lh-1 mb-3 text-dark">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-secondary">
+       <i class="fa-solid fa-circle-chevron-right fa-xs text-light"></i>
         Panier
     </h1>
     <p>
@@ -18,13 +19,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-3">
-                <p class="text-primary">
-                    > Réference du panier:
+                <p class="text-info">
+                    <i class="fa-solid fa-circle-arrow-right"></i> 
+                    Réference du panier: <br>
                     <small class="text-muted shadow-sm">{{cart.cartUid}}</small>
                 </p>
                 <br>
-                <p class="text-primary">
-                    > Liste des competitions commandées
+                <p class="text-info">
+                    <i class="fa-solid fa-circle-arrow-right"></i> 
+                    Liste des competitions commandées
                 </p>
                 <div class="shadow-lg p-3 rounded-4">
 
@@ -32,13 +35,13 @@
                         <thead>
                             <tr>
                                 <th scope="col"><b>
-                                        <small class="text-primary">
+                                        <small class="text-info">
                                             #
                                         </small>
                                 </th>
                                 </b>
                                 <th scope="col"><b>
-                                        <small class="text-primary">
+                                        <small class="text-info">
                                             MATCH
                                         </small>
                                     </b></th>
@@ -48,17 +51,17 @@
                                         </small>
                                     </b></th>
                                 <th scope="col"><b>
-                                        <small class="text-primary">
+                                        <small class="text-info">
                                             IMAGE
                                         </small>
                                     </b></th>
                                 <th scope="col"><b>
-                                        <small class="text-primary">
+                                        <small class="text-info">
                                             LIEU
                                         </small>
                                     </b></th>
                                 <th scope="col"><b>
-                                        <small class="text-primary">
+                                        <small class="text-info">
                                             PU
                                         </small>
                                     </b></th>
@@ -78,6 +81,7 @@
                                 <td>
                                     <form action="" method="POST" id="remove-form">
                                         {% csrf_token %}
+                                       <i class="fa-regular fa-trash-can text-secondary"></i>
                                         <input type="button" value="remove"
                                             class=" btn-del-ajax btn btn-sm btn-outline-warning rounded-4 text-secondary btn-petit"
                                             data-id="{{order.id}}">
@@ -113,14 +117,16 @@
                 </div>
 
                 <div>
+                    <i class="fa-regular fa-square-caret-right text-info text-petit"> &nbsp; Voir la facture</i>&nbsp;<br>
                     <a href="{% url 'invoice' %}" class="btn btn btn-outline-info rounded-4 btn-petit text-secondary">Facture</a>
                 </div>
             </div>
             <div class="col-md-3 px-3 mx-4">
 
                 <p>
-                    <span class="text-primary">
-                        > Choisir une offre
+                    <span class="text-info">
+                        <i class="fa-solid fa-circle-arrow-right"></i> 
+                        Choisir une offre
                     </span>
                     <br>
                 </p>
@@ -169,8 +175,10 @@
                     </p>
                     <br>
                     <p>
-                        <small class="text-primary">
-                            TOTAL -
+                            <i class="fa-regular fa-square-caret-right text-info text-petit"> &nbsp;  TOTAL -</i>&nbsp;
+
+                        <small class="text-info">
+                           
                         </small>
                         <small class="text-secondary small-text">
                             Prix pour <span class="selected-offer-nbPers"></span> avec la remise de <span

@@ -174,7 +174,9 @@ def add_to_cart(request, pk):
         # cela veut dire qu'il n'existe pas encore dans le panier, donc il faudra le créer (avec l'element qu'on a récupérer: 'order')   
             cart.orders.add(order)
             order.ordered = True       
-            order.save()      
+            order.save()   
+            cart.total = 0
+            cart.save()   
             return JsonResponse({'status': " Element rajouté dans le panier"})
         else:
             order.quantity += 1
@@ -195,13 +197,29 @@ def cart(request):
         offer_id = request.POST['offer_id']
         offer = get_object_or_404(Offer, id=offer_id)
         cart.add(offer)
-        cart.save()
         
-        # renvoyer dans le front en json les données de l'offre choisies 
+        # met à jour 'total' dans la base de données
+        total = 0
+        for order in cart.orders.all():
+            total += order.competition.price
+        
+        sousTotal = total * offer.nbPers
+        prixRemise = sousTotal * ((1 - offer.discount / 100))
+        cart.total = prixRemise
+         
+        cart.save()
+
+        
+        # renvoyer dans le front en json les données de l'offre choisies / cart / et order
         offer_values = Offer.objects.filter(pk=offer_id).values()
+        cart_values = Cart.objects.filter(user=request.user).values()
+        order_values = Order.objects.filter(user=request.user).values()
+        
 
         return JsonResponse({
-            'offer_values':list(offer_values)
+            'offer_values':list(offer_values),
+            'cart_values':list(cart_values),
+            'order_values':list(order_values)
         })
 
     else:
@@ -217,6 +235,10 @@ def remove_from_cart(request, pk):
     if request.POST.get('action') == 'remove-from-cart-ajax':
         id = request.POST.get('order_id')
         order = Order.objects.get(pk=id)
+        cart = Cart.objects.get(user=request.user)
+        # vide le total du panier (l'utilisateur sera invité a rechoisir une offre)
+        cart.total = 0
+        cart.save()
         order.delete()
-        return JsonResponse({'status':"Element supprimé du panier"})
+        return JsonResponse({'status':"Element supprimé du panier. Merci de rafraichir la page et choisir une offre pour avoir le total"})
 

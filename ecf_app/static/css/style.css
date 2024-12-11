@@ -8,13 +8,20 @@
 
 .heading-style{
    background-image: url('/static/assets/img/paris.png');
-   opacity: 50%;
    height: 230px;
    margin-bottom: 20px;
   }
 
-.offer-style{
-    color:lightseagreen;
-    font-size: large;
+.offer-choice{
+   font-size: 14px;
+   height: 30px;
+   border: 0px;
+}
 
+.small-text{
+    font-size: 12px;
+}
+
+.btn-petit{
+    font-size: 12px;
 }

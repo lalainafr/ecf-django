@@ -17,88 +17,12 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-3 px-3 mx-4">
+            <div class="col-md-8 mx-3">
                 <p class="text-primary">
                     > Réference du panier:
-                </p>
-                <p class="shadow-sm p-2">
-                    <small class="text-muted"> {{cart.cartUid}}</small>
+                    <small class="text-muted shadow-sm">{{cart.cartUid}}</small>
                 </p>
                 <br>
-
-                <div>
-                    <form action="" method="POST" id="offer-form"> 
-                        {% csrf_token %}
-                        <input type="hidden" name="offer_id" id="offer_id" value="1" >
-                        <p class="text-primary">
-                                > Choisir une offre
-                        </p>
-                        <div class="floatingInput col-md-9 d-flex shadow-sm p-2">
-                            {% render_field form.offer class="form-control text-muted offer-choice" id="target-select" %} &nbsp;&nbsp;
-                            <button class="btn btn btn-info text-light rounded-4" id="btn-choisir";">Choisir</button>
-                        </div>
-                    </form>
-                </div>
-                <br><br>
-                <div>
-                    <p>
-                        <small class="text-secondary">
-                            Offre choisie
-                        </small>
-                    </p>
-                    
-                    <p class="shadow-lg p-2 rounded-4">
-                        <small class="text-muted" id="selected-offer-name">
-                            ...
-                        </small>
-                    </p>  
-                    <p>
-                        <small class="text-secondary">
-                            
-                            Valable pour 
-                        </small>
-                    </p>                   
-                    <p class="shadow-lg p-2 rounded-4">
-                        <small class="text-muted">
-                            <span class="selected-offer-nbPers">
-                                ...
-                            </span>
-                            personne(s)
-                        </small>
-                    </p>                    
-                
-                <p>
-                    <small class="text-secondary">
-                        Remise
-                    </small>
-                </p>                    
-                <p class="shadow-lg p-2 rounded-4">
-                    <small class="text-muted">
-                        <span class="selected-offer-remise">
-                            ...
-                        </span> %
-                    </small>
-                </p>                             
-                <br>
-            <p>
-                <small class="text-primary">
-                    TOTAL - 
-                </small>
-                <small class="text-secondary">
-                    Prix pour <span class="selected-offer-nbPers"></span> avec la remise de <span class="selected-offer-remise"></span> %
-                </small>
-            </p>
-            <p class="shadow-lg p-2 rounded-4">
-                <small id="total" class="text-muted">
-                        100.00 €
-                </small>
-            </p>                    
-
-    </div>
-               
-                    <br />
-            </div>
-            <div class="col-md-8 mx-3">
                     <p class="text-primary">
                         > Liste des competitions commandées 
                     </p>
@@ -115,7 +39,7 @@
                                 </b>
                                 <th scope="col"><b>
                                     <small class="text-primary">
-                                        Match
+                                        MATCH
                                     </small>
                                 </b></th>
                                 <th scope="col"><b>
@@ -125,17 +49,17 @@
                                 </b></th>
                                 <th scope="col"><b>
                                     <small class="text-primary">
-                                        Image
+                                        IMAGE
                                     </small>
                                 </b></th>
                                 <th scope="col"><b>
                                     <small class="text-primary">
-                                        Lieu
+                                        LIEU
                                     </small>
                                 </b></th>
                                 <th scope="col"><b>
                                     <small class="text-primary">
-                                        Prix
+                                        PU
                                     </small>
                                 </b></th>
                             </tr>
@@ -157,7 +81,7 @@
                                     <input 
                                         type="button" 
                                         value="remove"
-                                        class=" btn-del-ajax btn btn-sm btn-outline-danger rounded-4 text-danger" data-id="{{order.id}}">
+                                        class=" btn-del-ajax btn btn-sm btn-outline-warning rounded-4 text-secondary btn-petit" data-id="{{order.id}}">
                                     </form>
                                 </td>
                         
@@ -173,10 +97,11 @@
                                     {{order.competition.place}}
                                 </small>
                             </td>   
-                            <td> <small id="price" class="text-muted">
-                                    {{order.competition.price|floatformat:2}} €
+                            <td> <small class="text-muted price">
+                                    {{order.competition.price|floatformat:2}} 
                                     
                                 </small>
+                                €
                                 </td>   
    
                             </tr>
@@ -186,14 +111,85 @@
                     </table>
                 </div>
                 <br>
-                <div class="float-end">
+                <div class="float-end small-text">
                     Il y a <b>{{cart.getTotalOrders}}</b> element(s) commandés dans le panier
                 </div>
                     
     </div>
+            <div class="col-md-3 px-3 mx-4">
+                
+                <p >
+                    <span class="text-primary">
+                        > Choisir une offre
+                    </span>
+                    <br> 
+                </p>
+                <div class="shadow p-3">
+                    <form action="" method="POST" id="offer-form"> 
+                        {% csrf_token %}
+                        <input type="hidden" name="offer_id" id="offer_id" value="1" >
+                      
+                        <div class="floatingInput col-md-9 d-flex">
+                            {% render_field form.offer class="form-control text-muted offer-choice" id="target-select" %} &nbsp;&nbsp;
+                            <button class="btn btn btn-outline-info rounded-4 btn-petit text-secondary" id="btn-choisir" >Choisir</button>
+                        </div>
+                        <br>
+                        <small class="text-muted small-text">
+                            Après la suppression et le rajout d'une commande, reconfirmer le choix de l'offre 
+                        </small>
+                    </form>
+                </div>
+                <br><br>
+                <div> 
+                    <p>
+                        <small class="text-secondary">       
+                            Valable pour 
+                        </small>
+                    </p>                   
+                    <p class="shadow-lg p-2 rounded-4">
+                        <small class="text-muted">
+                            <span class="selected-offer-nbPers">
+                                ...
+                            </span>
+                            personne(s)
+                        </small>
+                    </p>                    
+                <p>
+                    <small class="text-secondary">
+                        Remise
+                    </small>
+                </p>                    
+                <p class="shadow-lg p-2 rounded-4">
+                    <small class="text-muted">
+                        <span class="selected-offer-remise">
+                            ...
+                        </span> %
+                    </small>
+                </p>                             
+                <br>
+            <p>
+                <small class="text-primary">
+                    TOTAL - 
+                </small>
+                <small class="text-secondary small-text">
+                    Prix pour <span class="selected-offer-nbPers"></span> avec la remise de <span class="selected-offer-remise"></span> %
+                </small>
+            </p>
+            <p class="shadow-lg p-2 rounded-4">
+                <small id="total" class="text-muted">
+                    {{cart.total}} 
+                </small> €
+            </p>           
+    </div>         
+        <br />
+</div>
+            
 </div>
             
     </div>
 </section>
 {% endblock content %}
 <!-- Footer-->
+
+
+ 

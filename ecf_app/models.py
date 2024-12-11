@@ -40,6 +40,7 @@ class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     orders = models.ManyToManyField(Order)
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE, blank=True, null=True)
+    total = models.FloatField(default=0.00)
            
     def __str__(self):
         return self.user.first_name + ' ' +  self.user.last_name 
@@ -52,4 +53,7 @@ class Cart(models.Model):
     def getTotalOrders(self):
         return self.orders.count()
     
+
+        
+            
     

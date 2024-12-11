@@ -16,7 +16,7 @@
 <section class="container">
     <div class="row mt-4">
         <div class="col-md-5">
-            <p class="offer-style">> Ajouter une offre</p>
+            <p class="text-primary">> Ajouter une offre</p>
             <br />
             <div class="w-75 borde rounded-4 shadow-lg p-4">
                 <!-- Specifier la methode POST -->
@@ -52,7 +52,7 @@
                     </div>
                     <input
                         type="button"
-                        class="btn btn-sm btn-success"
+                        class="btn btn-outline-primary rounded-4"
                         value="Save"
                         id="btn-save"
                     />
@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="col-md-7">
-            <p class="offer-style">> Liste des offres disponibles</p>
+            <p class="text-primary">> Liste des offres disponibles</p>
             <p>
                 <small class="text-muted"> La liste est mis a jour dynamiquement sans rechargement de la page grace à l'appel ajax...</small>
             </p>
@@ -102,14 +102,14 @@
                             <input
                                 type="button"
                                 value="Edit"
-                                class="btn btn-outline-warning btn-edit btn-sm"
+                                class="btn btn-outline-warning btn-edit btn-sm btn-petit rounded-4"
                                 data-sid="{{offer.id}}"
                             />
                             <!-- 'data-sid' pour récuperer le id de l'offre concernée à supprimer-->
                             <input
                                 type="button"
                                 value="Delete"
-                                class="btn btn-outline-danger btn-del btn-sm"
+                                class="btn btn-outline-danger btn-del btn-sm btn-petit rounded-4"
                                 data-sid="{{offer.id}}"
                             />
                             <!-- 'data-sid' pour récuperer le id de l'offre concernée à supprimer-->

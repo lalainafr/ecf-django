@@ -93,6 +93,7 @@ $('#tbody').on("click", ".btn-del", function() {
                 console.log('Data deleted')
                 // prendre et fadeOut le this (input...) le plus proche du tr
                 $(mythis).closest("tr").fadeOut();
+               
             } 
 
             if(data.status == 0){
@@ -101,7 +102,6 @@ $('#tbody').on("click", ".btn-del", function() {
         },
     });
 })
-
 
 
 // EDIT
@@ -169,13 +169,22 @@ $('#btn-choisir').click(function (e) {
             action: 'post'
         },
 
+        
+
         success: function (response) {
         // mettre a jour l'offre choisie dans le panier en fonction du choix de l'utilisateur
           let offer = response.offer_values[0]
+          let cart = response.cart_values[0]
+          let orders = response.order_values
           $('#selected-offer-name').text(offer.name)
           $('.selected-offer-nbPers').text(offer.nbPers)
           $('.selected-offer-remise').text(offer.discount)
 
+
+            let prices = offer.price
+            let total = cart.total
+
+            $('#total').text(total)
         }
     });
 });
@@ -206,6 +215,7 @@ $('#btn-panier').click(function (e) {
         success: function (response) {
             let output = "<div class='alert alert-success role='alert'>" + response['status'] + "</div>"
             $('#message-content-ajax').html(output)
+            $('#total').text('')
         }
     });
 });
@@ -237,9 +247,16 @@ $('#tbody-ajax').on("click", ".btn-del-ajax", function() {
             $(mythis).closest("tr").fadeOut();
             let output = "<div class='alert alert-success role='alert'>" + response['status'] + "</div>"
             $('#message-content-ajax').html(output)
+            $('#total').text('')
+
 
         }
     });
+});
+
+
+$('#rafraichir-btn').click(function () { 
+    $('#total').text('')
 });
 
 

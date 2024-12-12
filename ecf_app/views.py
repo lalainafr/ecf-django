@@ -177,7 +177,14 @@ def add_to_cart(request, pk):
             order.save()   
             cart.total = 0
             cart.save()   
-            return JsonResponse({'status': " Element rajouté dans le panier"})
+                
+            # navbar cart quantity a envoyer en ajaxa
+            qty = cart.orders.count()
+        
+            return JsonResponse({
+                'status': 'Element rajouté dans le panier',
+                'qty': qty
+                })
         else:
             order.quantity += 1
             order.save()  
@@ -240,7 +247,15 @@ def remove_from_cart(request, pk):
         cart.total = 0
         cart.save()
         order.delete()
-        return JsonResponse({'status':"Element supprimé du panier. Merci de rafraichir la page et choisir une offre pour avoir le total"})
+        
+          # navbar cart quantity a envoyer en ajaxa
+        qty = cart.orders.count()
+        
+        return JsonResponse({
+            'status': 'Element supprimé dans le panier',
+            'qty': qty
+            })
+
 
 def invoice(request):
     cart  = Cart.objects.get(user=request.user)

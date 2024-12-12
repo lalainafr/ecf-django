@@ -216,6 +216,10 @@ $('#btn-panier').click(function (e) {
             let output = "<div class='alert alert-success role='alert'>" + response['status'] + "</div>"
             $('#message-content-ajax').html(output)
             $('#total').text('')
+
+            // navbar cart quantity
+            let qty = response.qty
+            $('#cart-qty').text(qty)
         }
     });
 });
@@ -248,6 +252,10 @@ $('#tbody-ajax').on("click", ".btn-del-ajax", function() {
             let output = "<div class='alert alert-success role='alert'>" + response['status'] + "</div>"
             $('#message-content-ajax').html(output)
             $('#total').text('')
+
+            // navbar cart quantity
+            let qty = response.qty
+            $('#cart-qty').text(qty)
 
 
         }

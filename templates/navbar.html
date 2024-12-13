@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg nav-style">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'home'%}">
             <img
                 src="{% static 'assets/img/logo.jpg' %}"
                 alt=""
@@ -24,7 +24,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a
-                        class="nav-link active"
+                        class="nav-link"
                         aria-current="page"
                         href="{% url 'home' %}"
                         >Accueil</a
@@ -35,31 +35,43 @@
                         >Competition</a
                     >
                 </li>
+                {% if request.user.is_authenticated %}
+
                 <li class="nav-item">
                     <a
                         class="nav-link btn btn-light"
                         href="{% url 'cart' %}"
                         type="button"
                     >
-                        Panier
+                        Panier {% if cart == None %}
+                        <span
+                            class="badge badge-light bg-success text-light rounded-4"
+                            id="cart-qty"
+                        >
+                            0
+                        </span>
+
+                        {% else %}
                         <span
                             class="badge badge-light bg-success text-light rounded-4"
                             id="cart-qty"
                         >
                             {{cart.orders.count}}</span
                         >
+                        {% endif %}
                     </a>
                 </li>
+                {% endif %}
                 <li class="nav-item dropdown">
                     <a
-                        class="nav-link dropdown-toggle"
+                        class="nav-link dropdown-toggle shadow-sm rounded-3 text-warning text-petit"
                         href="#"
                         id="navbarDropdown"
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                     >
-                        Admin PANEL
+                        ADMIN panel
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
@@ -92,6 +104,11 @@
 
             <div class="d-flex">
                 {% if request.user.is_authenticated %}
+                <p class="text-petit text-muted mt-2 shadow">
+                    {{request.user}}
+                </p>
+                &nbsp;
+
                 <a href="{% url 'logout'%}">
                     <button
                         class="btn btn-sm btn-outline-success btn-text rounded-4 mx-1"

@@ -20,7 +20,7 @@
         <div>
             <div class="row">
                 <div class="col-md-4">
-                    <p class="text-primary shadow p-3">
+                    <p class="text-info shadow p-3">
                         <i class="fa-solid fa-circle-arrow-right"></i>
 
                         Réference du panier: <br>
@@ -28,7 +28,7 @@
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <p class="text-primary shadow p-3">
+                    <p class="text-info shadow p-3">
                         <i class="fa-solid fa-circle-arrow-right"></i>
 
                         Client: <br>
@@ -37,7 +37,7 @@
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <p class="text-primary shadow p-3">
+                    <p class="text-info shadow p-3">
                         <i class="fa-solid fa-circle-arrow-right"></i>
 
                         Identification: <br>
@@ -53,33 +53,33 @@
                     <thead>
                         <tr>
                             <th scope="col"><b>
-                                    <small class="text-primary">
+                                    <small class="text-info">
                                         #
                                     </small>
                             </th>
                             </b>
                             <th scope="col"><b>
-                                    <small class="text-primary">
+                                    <small class="text-info">
                                         MATCH
                                     </small>
                                 </b></th>
                             <th scope="col"><b>
-                                    <small class="text-primary">
+                                    <small class="text-info">
                                         DESCRIPTION
                                     </small>
                                 </b></th>
                             <th scope="col" class="text-center"><b>
-                                    <small class="text-primary">
+                                    <small class="text-info">
                                         LIEU
                                     </small>
                                 </b></th>
                             <th scope="col" class="text-center"><b>
-                                    <small class="text-primary">
+                                    <small class="text-info">
                                         QTE
                                     </small>
                                 </b></th>
                             <th scope="col" class="text-center"><b>
-                                    <small class="text-primary">
+                                    <small class="text-info">
                                         PU
                                     </small>
                                 </b></th>
@@ -174,7 +174,7 @@
                                 </small>
 
                             </td>
-                            <td class="text-center shadow"> <small class="text-muted">
+                            <td class="text-center shadow rounded-4"> <small class="text-muted">
                                     {{cart.total|floatformat:2}} €
                                 </small>
                             </td>
@@ -183,7 +183,7 @@
                 </table>
             </div>
             <br>
-            <div class="float-end">
+            <div class="float-end mx-4" >
                 <i class="fa-brands fa-cc-amazon-pay fa-xl text-secondary"></i> &nbsp;
                 <button class="btn btn btn-outline-info rounded-4 btn-petit text-secondary"
                     id="btn-choisir">PAYER</button>

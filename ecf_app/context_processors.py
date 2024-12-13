@@ -8,6 +8,9 @@ def custom_data(request):
         return {}
     else:
         if request.user.is_authenticated:
-            cart = Cart.objects.get(user = request.user)
-            return {'cart': cart}
+            try:
+                cart = Cart.objects.get(user = request.user)
+                return {'cart': cart}
+            except Cart.DoesNotExist:
+                cart = None
         return {}

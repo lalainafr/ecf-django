@@ -1,0 +1,57 @@
+{% extends 'base.html'%} {%load widget_tweaks%} {% block content%}
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <h1 class="display-3 fw-bold lh-1 mb-3 text-secondary">
+                User Profile
+            </h1>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Suscipit illum, voluptatem doloremque hic nisi ipsum eum, fuga
+                possimus perspiciatis expedita, corrupti beatae delectus vero
+                sit molestias nostrum aliquid quae magnam? Lorem ipsum dolor
+                sit, amet consectetur adipisicing elit. Suscipit illum,
+                voluptatem doloremque hic nisi ipsum eum, fuga possimus
+                perspiciatis expedita, corrupti beatae delectus vero sit
+                molestias nostrum aliquid quae magnam?
+            </p>
+            <br />
+            <button class="btn btn-outline-secondary rounded-4">
+                <a
+                    href="{% url 'edit_profile' request.user %}"
+                    style="text-decoration: none"
+                >
+                    Edit
+                </a>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="d-flex justify-content-center">
+            <div class="col-md-8">
+                <div class="card rounded-3 p-2 shadow" style="width: 18rem">
+                    <div class="card-body">
+                        <h5 class="card-title display-6">{{profile.user}}</h5>
+                        <p class="card-text text-muted">{{profile.address}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <p class="text-petit">Banque</p>
+                            {{profile.bankName}}
+                        </li>
+                        <li class="list-group-item">
+                            <p class="text-petit">Numéro de compte</p>
+                            {{profile.accountNb}}
+                        </li>
+                        <li class="list-group-item">
+                            <p class="text-petit">Solde</p>
+                            {{profile.accountAvalable}} €
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock content%}

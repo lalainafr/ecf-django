@@ -1,0 +1,67 @@
+{% extends 'base.html'%} {%load widget_tweaks%} {% block content%}
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <h1 class="display-3 fw-bold lh-1 mb-3 text-secondary">
+                Create Profile
+            </h1>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Suscipit illum, voluptatem doloremque hic nisi ipsum eum, fuga
+                possimus perspiciatis expedita, corrupti beatae delectus vero
+                sit molestias nostrum aliquid quae magnam? Lorem ipsum dolor
+                sit, amet consectetur adipisicing elit. Suscipit illum,
+                voluptatem doloremque hic nisi ipsum eum, fuga possimus
+                perspiciatis expedita, corrupti beatae delectus vero sit
+                molestias nostrum aliquid quae magnam?
+            </p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="d-flex justify-content-center">
+            <div class="col-md-8">
+                <form
+                    class="p-5 p-md-5 border bg-white rounded-4 shadow-lg"
+                    method="POST"
+                >
+                    {%csrf_token%}
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label"
+                            >Nom & prenom</label
+                        >
+                        <input type="text" name="user" class="form-control
+                        text-muted" id="floatingInput" value="{{request.user}}"
+                        disabled="True"
+                    </div>
+                    <br />
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label"
+                            >Adresse</label
+                        >
+                        {% render_field form.address class="form-control" %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label"
+                            >Bank name</label
+                        >
+                        {% render_field form.bankName class="form-control" %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label"
+                            >Numero du compte</label
+                        >
+                        {% render_field form.accountNb class="form-control" %}
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-outline-primary rounded-4"
+                    >
+                        Valider
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock content%}

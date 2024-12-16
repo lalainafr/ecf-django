@@ -7,7 +7,6 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from var_dump import var_dump
-from django.http import HttpResponse
 
 
 

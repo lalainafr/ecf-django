@@ -97,6 +97,34 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Profil
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="{% url 'create_profile' %}"
+                                >Créer</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="{% url 'user_profile' request.user %}"
+                                >Info</a
+                            >
+                        </li>
+                    </ul>
+                </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link disabled">Disabled</a>
                 </li> -->

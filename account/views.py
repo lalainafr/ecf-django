@@ -12,7 +12,11 @@ from .token import TokenGenerator, generate_token
 from django.utils.encoding import force_bytes, force_str
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from .form import RegisterCustomerForm
+from .form import RegisterCustomerForm, ProfileForm
+
+from .models import Profile
+from django.http import JsonResponse
+
 
 
 def activate(request, uidb64, token):
@@ -94,3 +98,61 @@ def logout_user(request):
     logout(request)
     messages.success(request, 'You have been logged out')
     return redirect('login')
+
+# profile
+def create_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            messages.success(request, 'Profile registered')
+            return redirect('home')
+            
+        else:
+            messages.warning(request,form.errors)
+            return redirect('home')
+    else:
+        form = ProfileForm()
+        context = {'form': form}
+        return render(request, 'account/create_profile.html', context)
+
+def edit_profile(request, pk):
+    profile = Profile.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            messages.success(request, 'Profile edited')
+            return redirect('home')
+            
+        else:
+            messages.warning(request,form.errors)
+            return redirect('home')
+    else:
+        form = ProfileForm(instance=profile)
+        context = {'form': form}
+        return render(request, 'account/create_profile.html', context)
+   
+def user_profile(request, pk):
+    profile = Profile.objects.get(user=request.user)
+    context = {'profile': profile}
+    return render(request, 'account/user_profile.html', context)
+
+def list_profile(request):
+    profiles = Profile.objects.all()
+    context = {'profiles': profiles}
+    
+    profile_values = Profile.objects.values()
+
+    profile_data = list(profile_values)
+    
+    
+    # retourner un end point en json
+    return JsonResponse({
+        'profile_datas': profile_data
+    })
+    

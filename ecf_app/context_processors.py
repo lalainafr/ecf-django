@@ -1,6 +1,7 @@
 # context processors afin de rendre accessible cart dans tous les templates
 # Disable django context processor in django-admin pages
 from ecf_app.models  import Cart
+from account.models import Profile
 from django.urls import reverse
 
 def custom_data(request):
@@ -13,4 +14,10 @@ def custom_data(request):
                 return {'cart': cart}
             except Cart.DoesNotExist:
                 cart = None
+            
+            try:
+                profile = Profile.objects.get(user = request.user)
+                return {'profile': profile}
+            except Cart.DoesNotExist:
+                profile = None
         return {}

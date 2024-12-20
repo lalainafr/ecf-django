@@ -16,6 +16,9 @@
                 molestias nostrum aliquid quae magnam?
             </p>
             <br />
+            <p class="text-petit">
+                Appuyez sur le bouton afind e remplir ou modifier le profil
+            </p>
             <button class="btn btn-outline-secondary rounded-4">
                 <a
                     href="{% url 'edit_profile' request.user %}"
@@ -45,7 +48,7 @@
                         </li>
                         <li class="list-group-item">
                             <p class="text-petit">Solde</p>
-                            {{profile.accountAvalable}} €
+                            {{profile.accountAvailable}} €
                         </li>
                     </ul>
                 </div>

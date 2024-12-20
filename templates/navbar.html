@@ -35,6 +35,7 @@
                         >Competition</a
                     >
                 </li>
+
                 {% if request.user.is_authenticated %}
 
                 <li class="nav-item">
@@ -60,6 +61,14 @@
                         >
                         {% endif %}
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link text-muted mx-1"
+                        href="{% url 'user_profile' request.user %}"
+                        style="text-decoration: none"
+                        >Profil</a
+                    >
                 </li>
                 {% endif %}
                 <li class="nav-item dropdown">
@@ -97,39 +106,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="navbarDropdown"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        Profil
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            {% if not profile %}
-                            <a
-                                class="dropdown-item text-muted"
-                                href="{% url 'create_profile' %}"
-                                >Créer profil</a
-                            >
-                            {% endif %}
-                        </li>
-                        <li>
-                            <a
-                                class="dropdown-item text-muted"
-                                href="{% url 'user_profile' request.user %}"
-                                >Info profil</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li> -->
             </ul>
 
             <div class="d-flex">

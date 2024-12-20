@@ -32,7 +32,7 @@ def activate(request, uidb64, token):
     if user is not None and generate_token.check_token(user, token):
         user.is_active = True
         user.save()     
-        messages.success(request, f'Votre compte a été activé, pour pouvez vous authentifier actuelement..')
+        messages.success(request, f'Votre compte a été activé, pour pouvez vous authentifier actuelement... ensuite remplissez votre profil')
         return redirect('login') 
     return render (request, 'account/activate_fail.html')  
     
@@ -48,6 +48,9 @@ def register_user(request):
             user.is_active = False
             user.save()
             
+            # on créer un profil
+            Profile.objects.create(user=user)
+            
             # email content
             email_subject="Activer votre compte"
             message = render_to_string('account/activate.html', {
@@ -61,13 +64,11 @@ def register_user(request):
             })
             
               # send mail
-            email_from = 'lalaina@myself.com'
+            email_from = 'no-reply@test.test'
             recipient_list = [user.email]
 
-        
             send_mail(email_subject, message, email_from, recipient_list)
             
-            # messages.success(request, 'Account created successfully. please log in')
             return redirect('login')
         else:
             messages.warning(request, 'Something went wrong')
@@ -99,25 +100,8 @@ def logout_user(request):
     messages.success(request, 'You have been logged out')
     return redirect('login')
 
-# profile
-def create_profile(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = request.user
-            profile.save()
-            messages.success(request, 'Profile registered')
-            return redirect('home')
-            
-        else:
-            messages.warning(request,form.errors)
-            return redirect('home')
-    else:
-        form = ProfileForm()
-        context = {'form': form}
-        return render(request, 'account/create_profile.html', context)
 
+#  --- PROFIL --- 
 def edit_profile(request, pk):
     profile = Profile.objects.get(user=request.user)
     if request.method == 'POST':
@@ -125,34 +109,35 @@ def edit_profile(request, pk):
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
+            profile.accountAvailable = 100
             profile.save()
-            messages.success(request, 'Profile edited')
-            return redirect('home')
+            messages.success(request, 'Profil modifié')
+            return redirect('user_profile', pk=request.user.id)
             
         else:
             messages.warning(request,form.errors)
-            return redirect('home')
+            return redirect('user_profile', pk=request.user.id)
     else:
         form = ProfileForm(instance=profile)
         context = {'form': form}
-        return render(request, 'account/create_profile.html', context)
+        return render(request, 'account/edit_profile.html', context)
    
 def user_profile(request, pk):
     profile = Profile.objects.get(user=request.user)
     context = {'profile': profile}
     return render(request, 'account/user_profile.html', context)
 
+# donnée bancaire d'un user est valable en json et qui seront requettés via ajax lors du paiement afin de vérifier les informations de l'utilisateur
 def list_profile(request):
     profiles = Profile.objects.all()
     context = {'profiles': profiles}
     
     profile_values = Profile.objects.values()
 
-    profile_data = list(profile_values)
-    
+    bank_data = list(profile_values)
     
     # retourner un end point en json
     return JsonResponse({
-        'profile_datas': profile_data
+        'bank_data': bank_data
     })
     

@@ -15,6 +15,7 @@ class User(AbstractUser):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.TextField(null=True, blank=True)
+    birthdate = models.DateTimeField(blank=True, null=True)
     # les informations suivantes servent juste pour la 'SIMULATION DE PAIEMENT'
     # dans la vraie vie les informations confidentielles ne sont pas stockées ainsi
     bankName = models.CharField(max_length=50, blank=True, null=True)

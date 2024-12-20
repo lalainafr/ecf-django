@@ -26,40 +26,45 @@
                 >
                     {%csrf_token%}
                     <div class="mb-3">
-                        <label for="floatingInput" class="form-label"
+                        <label for="floatingInput" class="form-label text-petit"
                             >Nom & prenom</label
                         >
                         <input type="text" name="user" class="form-control
                         text-muted" id="floatingInput" value="{{request.user}}"
-                        disabled="True"
+                        disabled="True">
                     </div>
-                    <br />
                     <div class="mb-3">
-                        <label for="floatingInput" class="form-label"
+                        <label for="floatingInput" class="form-label text-petit"
+                            >Date d'anniversaire</label
+                        >
+                        <input type="date" name="birthdate" class="form-control
+                        text-muted" id="floatingInput">
+                    </div>
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label text-petit"
                             >Adresse</label
                         >
                         {% render_field form.address class="form-control" %}
                     </div>
                     <div class="mb-3">
-                        <label for="floatingInput" class="form-label"
+                        <label for="floatingInput" class="form-label text-petit"
                             >Bank name</label
                         >
                         {% render_field form.bankName class="form-control" %}
                     </div>
                     <div class="mb-3">
-                        <label for="floatingInput" class="form-label"
+                        <label for="floatingInput" class="form-label text-petit"
                             >Numero du compte</label
                         >
                         {% render_field form.accountNb class="form-control" %}
                     </div>
-                    </div>
-                    <br />
                     <button
                         type="submit"
-                        class="btn btn-outline-primary rounded-4"
+                        class="btn btn-outline-primary rounded-4 text-petit"
                     >
                         Valider
                     </button>
+                    </div>
                 </form>
             </div>
         </div>

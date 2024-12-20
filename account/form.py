@@ -15,8 +15,8 @@ class RegisterCustomerForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['address','bankName', 'accountNb']
+        fields = ['address','bankName', 'accountNb', 'birthdate']
         
         widgets = {
-          'address': forms.Textarea(attrs={'rows':4}),
+          'address': forms.Textarea(attrs={'rows':2}),
         }

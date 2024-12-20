@@ -35,6 +35,9 @@
                 <div class="card rounded-3 p-2 shadow" style="width: 18rem">
                     <div class="card-body">
                         <h5 class="card-title display-6">{{profile.user}}</h5>
+                        <p class="card-text text-muted text-petit">
+                            {{profile.birthdate | date:"d F Y"}}
+                        </p>
                         <p class="card-text text-muted">{{profile.address}}</p>
                     </div>
                     <ul class="list-group list-group-flush">

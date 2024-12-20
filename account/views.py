@@ -109,14 +109,14 @@ def edit_profile(request, pk):
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
-            profile.accountAvailable = 100
+            profile.birthdate = request.POST['birthdate']
             profile.save()
             messages.success(request, 'Profil modifié')
-            return redirect('user_profile', pk=request.user.id)
+            return redirect('user_profile', pk=request.user)
             
         else:
             messages.warning(request,form.errors)
-            return redirect('user_profile', pk=request.user.id)
+            return redirect('user_profile', pk=request.user)
     else:
         form = ProfileForm(instance=profile)
         context = {'form': form}

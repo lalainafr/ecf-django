@@ -54,6 +54,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="floatingInput" class="form-label"
+                            >Date d'anniversaire</label
+                        >
+                        <!-- {% render_field form.birthdate class="form-control" %} -->
+                        <input
+                            type="date"
+                            name="birthdate"
+                            class="form-control"
+                            id="floatingInput"
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="floatingInput" class="form-label"
                             >Enter Password</label
                         >
                         {% render_field form.password1 class="form-control" %}

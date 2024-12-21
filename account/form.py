@@ -8,14 +8,14 @@ User = get_user_model()
 class RegisterCustomerForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['last_name','first_name', 'email', 'password1', 'password2']
+        fields = ['last_name','first_name', 'email', 'birthdate', 'password1', 'password2']
 
 
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['address','bankName', 'accountNb', 'birthdate']
+        fields = ['address','bankName', 'accountNb', ]
         
         widgets = {
           'address': forms.Textarea(attrs={'rows':2}),

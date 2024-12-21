@@ -109,7 +109,6 @@ def edit_profile(request, pk):
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
-            profile.birthdate = request.POST['birthdate']
             profile.save()
             messages.success(request, 'Profil modifié')
             return redirect('user_profile', pk=request.user)

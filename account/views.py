@@ -129,14 +129,22 @@ def user_profile(request, pk):
 # donnée bancaire d'un user est valable en json et qui seront requettés via ajax lors du paiement afin de vérifier les informations de l'utilisateur
 def list_profile(request):
     profiles = Profile.objects.all()
+    User = get_user_model()
+    users = User.objects.all()
+
+
     context = {'profiles': profiles}
     
     profile_values = Profile.objects.values()
+    user_values = User.objects.values()
 
-    bank_data = list(profile_values)
+    
+    profile_data = list(profile_values)
+    user_data = list(user_values)
     
     # retourner un end point en json
     return JsonResponse({
-        'bank_data': bank_data
+        'profile_data': profile_data,
+        'user_data': user_data,
     })
     

@@ -55,5 +55,12 @@ class Cart(models.Model):
         return self.orders.count()
     
 
+class Payment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    birthDate = models.DateTimeField() 
+    cardNumber = models.CharField(max_length=50, )
+    bankName = models.CharField(max_length=50)
+    paymentUid =  models.UUIDField(default=uuid.uuid4)
+
         
     

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .form import OfferForm, CompetitionForm, UpdateCompetitionForm, OfferChoiceForm
+from .form import OfferForm, CompetitionForm, UpdateCompetitionForm, OfferChoiceForm, PaymentForm
 from .models import Offer, Competition, Cart, Order
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -260,3 +260,16 @@ def invoice(request):
     cart  = Cart.objects.get(user=request.user)
     context={'cart': cart}
     return render(request, 'ecf_app/invoice.html', context)
+
+def payment(request):
+   
+    cart = Cart.objects.get(user=request.user.id)
+    
+    form = PaymentForm(request.POST)
+
+    context = {
+        'form': form,
+        'cart': cart
+            }
+    return render(request, 'ecf_app/payment.html', context)
+

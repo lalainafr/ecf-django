@@ -1,4 +1,4 @@
-from .models import Offer, Competition, Cart
+from .models import Offer, Competition, Cart, Payment
 from django import forms
 
 class OfferForm(forms.ModelForm):
@@ -32,5 +32,12 @@ class OfferChoiceForm(forms.ModelForm):
     class Meta:
         model = Cart
         fields = ['offer']
+        
+    
+class PaymentForm(forms.ModelForm):
+    class Meta:
+        model = Payment
+        fields = '__all__'
+
         
     

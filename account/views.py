@@ -87,7 +87,12 @@ def login_user(request):
         if user is not None and user.is_active:
             login(request, user)
             messages.success(request, 'Login successful')
-            return redirect('home')
+            profile = Profile.objects.get(user= request.user)
+            if profile.address == '': 
+                messages.success(request,request.user.profile.address)
+                return redirect('user-profile', pk=request.user)
+            else:
+                return redirect('home')
         else:
             messages.warning(request, 'Invalid username or password')
             return redirect('login')

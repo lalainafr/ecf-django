@@ -38,7 +38,6 @@
                                     value="{{request.user}}"
                                     disabled="True"
                                     >
-
                                 </div>
                             </li>
                             <li class="list-group-item">
@@ -46,30 +45,33 @@
                                     <label for="floatingInput" class="form-label">
                                         <small> Date de Naissance </small>
                                     </label>
-                                    <input type="date"  class="form-control text-petit>
+                                    <input type="date"class="form-control text-petit" id="check-birthdate">
+                                    <span style="float: right" id="status-birthdate"></span>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="floatingInput mb-3">
-                                    <label for="floatingInput" class="form-label">
+                                    <label for="floatingInput" class="form-label" >
                                         <small> Carte bancaire </small>
                                     </label>
-                                    {% render_field form.cardNumber class="form-control text-petit"%}
+                                    {% render_field form.cardNumber class="form-control text-petit" id="check-accountNb"%}
+                                    <span style="float: right" id="status-cardNumber"></span>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="floatingInput mb-3">
-                                    <label for="floatingInput" class="form-label">
+                                    <label for="floatingInput" class="form-label" >
                                         <small> Banque</small>
                                     </label>
-                                    {% render_field form.bankName class="form-control text-petit"%}
+                                    {% render_field form.bankName class="form-control text-petit" id="check-bankName"%}
+                                    <span style="float: right" id="status-bankName"></span>
+
                                 </div>
                             </li>
                         </ul>
                         <div class="text-center">
 
                         <button type="submit" class="btn btn-outline-secondary rounded-4 btn-petit" id="btn-check-card" data-id={{user.id}}>Vérifer</button>
-                        <p class="text-petit text-info">Information validée</p>
                         </div>
                     </form>
                 </div>
@@ -82,7 +84,9 @@
                     <h7>1-  Entrez les informations de votre compte bancaire pour vérification</h7>
                     <br>
                     <br>
-                    <p class="shadow-sm p-2 text-petit">INFORMATION BANCAIRE A VALIDER</p>
+                    <p class="shadow-sm p-2 text-petit">INFORMATION BANCAIRE A VALIDER                     <span style="float: right" id="all-checked"></span>
+</p>
+
                     <br>
                     <br>
                     <br>
@@ -129,7 +133,6 @@
                     <button class="btn btn btn-outline-info rounded-4 btn-petit text-secondary"
                         id="btn-payer">PAYER</button>
                         </li>
-                        
                     </ul>
                 </div>
             </div>
@@ -139,3 +142,11 @@
 
 {%endblock content%}
 
+
+
+ 
+
+
+
+
+ 

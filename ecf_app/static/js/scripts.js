@@ -263,7 +263,79 @@ $('#tbody-ajax').on("click", ".btn-del-ajax", function() {
 });
 
 
-// $('#rafraichir-btn').click(function () { 
-//     $('#total').text('')
-// });
+
+// ajax check card information
+$('#btn-check-card').click(function (e) {
+    e.preventDefault();
+    //    profile card information
+
+    let id = $(this).attr("data-id")
+    let element = ''
+
+    $.ajax({
+        type: "get",
+        url: "http://127.0.0.1:8000/account/list-profile",
+        success: function (response) {
+            profile_data = response.profile_data
+            for (let index = 0; index < profile_data.length; index++) {
+                if (profile_data[index].user_id == id) {
+                    element = profile_data[index];
+                }
+            }
+
+            user_id = element.user_id
+
+            let user_data = response['user_data']
+            for (let index = 0; index < user_data.length; index++) {
+                if (user_data[index].id == user_id) {
+                    data = user_data[index];
+                }
+            }
+
+            // Données dans la base de Données
+            let accountNb = element.accountNb
+            let bankName = element.bankName
+            let user_birthdate = data.birthdate.substr(0, 10) // on prend les 10 premiere lettre '2005-02-05'
+
+            console.log(accountNb, bankName, user_birthdate)
+
+            // données tapées par l'user récupérée du formulaire
+            // a verifier avec les données dans la base de données
+
+            let check_birthdate =  $('#check-birthdate').val()
+            let check_accountNb =  $('#check-accountNb').val()
+            let check_bankName =  $('#check-bankName').val()
+
+            console.log('check_birthdate:' +  check_birthdate)
+            console.log('check_accountNb:' +  check_accountNb)
+            console.log('check_bankName:' +  check_bankName)
+
+            // LOGIQUE
+            if (check_birthdate == user_birthdate) {
+                $('#status-birthdate').html('<i class="fa-regular text-success fa-circle-check"></i>')
+            } else {
+                $('#status-birthdate').html('<i class="fa-regular text-danger fa-circle-xmark"></i>')
+            }
+
+            if (check_accountNb == accountNb) {
+                $('#status-cardNumber').html('<i class="fa-regular text-success fa-circle-check"></i>')
+            } else {
+                $('#status-cardNumber').html('<i class="fa-regular text-danger fa-circle-xmark"></i>')
+            }
+
+            if (check_bankName == bankName) {
+                  $('#status-bankName').html('<i class="fa-regular text-success fa-circle-check"></i>')
+            } else {
+                $('#status-bankName').html('<i class="fa-regular text-danger fa-circle-xmark"></i>')
+            }
+
+            // all checked
+            if (check_birthdate == user_birthdate && check_accountNb == accountNb &&  check_bankName == bankName) {
+                $('#all-checked').html('<i class="fa-regular text-success fa-circle-check"></i>')
+            }
+        }
+    });
+});
+
+
 

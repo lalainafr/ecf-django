@@ -71,7 +71,7 @@
                         </ul>
                         <div class="text-center">
 
-                        <button type="submit" class="btn btn-outline-secondary rounded-4 btn-petit" id="btn-check-card" data-id={{user.id}}>Vérifer</button>
+                        <button type="submit" class="btn btn-outline-info text-petit text-secondary rounded-4 " id="btn-check-card" data-id={{user.id}}>VERIFIER</button>
                         </div>
                     </form>
                 </div>
@@ -83,24 +83,21 @@
                 <br>
                     <h7>1-  Entrez les informations de votre compte bancaire pour vérification</h7>
                     <br>
-                    <br>
-                    <p class="shadow-sm p-2 text-petit">INFORMATION BANCAIRE A VALIDER                     <span style="float: right" id="all-checked"></span>
+                    <p class="shadow-sm p-2 text-petit" style="letter-spacing: 4px;">INFORMATION BANCAIRE A VALIDER                     <span style="float: right" id="all-checked"</span>
 </p>
 
                     <br>
-                    <br>
-                    <br>
                     <br><div class="text-center">
-
-                <i class="fa-brands fa-whmcs fa-2xl opacity-25" style="font-size: 150px; color:rgb(115, 56, 96);"></i>
+                <span id="checked-circle">
+                    <i class="fa-solid fa-circle-check " style="font-size: 150px; color:rgb(245, 240, 244); opacity: 40%;"></i>
+                </span>
                     </div>
-                    <br>
                     <br>
                     <br>
                     <h7> 2-  Une fois validé, procédez au paiement</h7>
                     <br>
                     <br>
-                    <p class="shadow-sm p-2 text-petit">ATTENTE VALIDATION INFORMATION BANACAIRE</p>
+                    <span id="proceed-payment" class="text-center"></span>
                     <br>
                     <br>
                     <br>
@@ -129,10 +126,11 @@
                         </li>
                         <br>
                         <li class="list-group-item text-center">
-                        <i class="fa-brands fa-cc-amazon-pay fa-xl text-secondary"></i> &nbsp;
-                    <button class="btn btn btn-outline-info rounded-4 btn-petit text-secondary"
-                        id="btn-payer">PAYER</button>
-                        </li>
+
+                        <div id="payment-btn">
+
+                        </div>
+                        
                     </ul>
                 </div>
             </div>

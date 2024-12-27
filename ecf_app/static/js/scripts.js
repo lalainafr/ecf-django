@@ -264,10 +264,13 @@ $('#tbody-ajax').on("click", ".btn-del-ajax", function() {
 
 
 
+
 // ajax check card information
 $('#btn-check-card').click(function (e) {
     e.preventDefault();
     //    profile card information
+
+  
 
     let id = $(this).attr("data-id")
     let element = ''
@@ -332,6 +335,13 @@ $('#btn-check-card').click(function (e) {
             // all checked
             if (check_birthdate == user_birthdate && check_accountNb == accountNb &&  check_bankName == bankName) {
                 $('#all-checked').html('<i class="fa-regular text-success fa-circle-check"></i>')
+                $('#proceed-payment').html(' <p class="shadow-sm p-2"  style=" color:rgb(115, 56, 96); letter-spacing:4px">MERCI DE PROCEDER AU PAIEMENT</p>')
+                $('#checked-circle').html('<i class="fa-solid fa-circle-check" style="font-size: 150px; color:rgb(115, 56, 96);"></i>')
+                $('#payment-btn').html(`
+                        <i class="fa-brands fa-cc-amazon-pay fa-xl text-secondary"></i> &nbsp;
+                            <button class="btn btn btn-outline-info rounded-4 btn-petit text-secondary"
+                        id="btn-payer">PAYER</button>
+                        `)
             }
         }
     });

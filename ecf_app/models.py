@@ -60,7 +60,10 @@ class Payment(models.Model):
     birthDate = models.DateTimeField() 
     cardNumber = models.CharField(max_length=50, )
     bankName = models.CharField(max_length=50)
+    offer = models.CharField(max_length=50, null=True, blank=True)
+    orders = models.CharField(max_length=200, null=True, blank=True)
     paymentUid =  models.UUIDField(default=uuid.uuid4)
+    cartAmount = models.FloatField(default=0.00)
 
         
     

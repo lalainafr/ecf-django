@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .form import OfferForm, CompetitionForm, UpdateCompetitionForm, OfferChoiceForm, PaymentForm
-from .models import Offer, Competition, Cart, Order
+from .models import Offer, Competition, Cart, Order, Payment
 from account.models import Profile
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -277,6 +277,41 @@ def payment(request):
 def valid_payment(request):
     user = request.user
     cart = Cart.objects.get(user = user)
+    orders = Order.objects.filter(user=user)
     profile = Profile.objects.get(user = user)
-    birthdate = profile.birthdate
+    birthdate = profile.user.birthdate
+    cardNumber = profile.accountNb
+    bankName = profile.bankName
+    cartAmount = cart.total
+    offer = cart.offer
+    orderList = cart.orders.all()
+    
+    # On deduit du solde du compte de l'user le montant du panier 
+    profile.accountAvailable -= cartAmount
+    profile.save()
+    
+    # On creer les infos du paiement en bdd
+    payment = Payment.objects.create(
+        user= user,
+        birthDate = birthdate,
+        cardNumber = cardNumber,
+        bankName = bankName,
+        offer = offer.name,
+        orders = list(orderList),
+        cartAmount = cartAmount
+        )
+    payment.save()
+    
+    # une fois le panier payé
+    # supprimer le panier
+    # supprimer les commanndes
+
+    cart.isPaid = True
+    cart.save()
+    if cart.isPaid:
+        cart.delete()
+        orders.delete()
+        
+    
+    return redirect('home')
     

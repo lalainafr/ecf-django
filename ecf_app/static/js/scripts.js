@@ -345,7 +345,9 @@ $("#btn-check-card").click(function (e) {
                     '<i class="fa-solid fa-circle-check text-primary" style="font-size: 150px;"></i>'
                 );
                 $("#payment-btn").html(`
- <button class="btn btn-outline-primary rounded-4 shadow-sm">                             <i class="fa-solid fa-circle-arrow-right"></i> &nbsp;PAYER</button>                        `);
+                <button class="btn btn-outline-primary rounded-4 shadow-sm">                             
+                <i class="fa-solid fa-circle-arrow-right"></i> &nbsp;PAYER</button>                        
+                `);
             }
         },
     });

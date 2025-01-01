@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .form import OfferForm, CompetitionForm, UpdateCompetitionForm, OfferChoiceForm, PaymentForm
 from .models import Offer, Competition, Cart, Order
+from account.models import Profile
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
@@ -273,3 +274,9 @@ def payment(request):
             }
     return render(request, 'ecf_app/payment.html', context)
 
+def valid_payment(request):
+    user = request.user
+    cart = Cart.objects.get(user = user)
+    profile = Profile.objects.get(user = user)
+    birthdate = profile.birthdate
+    

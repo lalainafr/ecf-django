@@ -71,7 +71,7 @@
                         </ul>
                         <div class="text-center">
 
-                        <button type="submit" class="btn btn-outline-info text-petit text-secondary rounded-4 " id="btn-check-card" data-id={{user.id}}>VERIFIER</button>
+                        <button type="submit" class="btn btn-outline-info text-petit text-secondary rounded-4 shadow-sm" id="btn-check-card" data-id={{user.id}}>VERIFIER</button>
                         </div>
                     </form>
                 </div>
@@ -94,7 +94,7 @@
                     </div>
                     <br>
                     <br>
-                    <h7> 2-  Une fois validé, procédez au paiement</h7>
+                    <h7> 2-  Une fois validé, procédez au paiement. </h7>
                     <br>
                     <br>
                     <span id="proceed-payment" class="text-center"></span>
@@ -126,9 +126,11 @@
                         </li>
                         <br>
                         <li class="list-group-item text-center">
-
-                        <div id="payment-btn">
-
+                        <div>
+                             <a href="{% url 'home' %}">        
+                                <span id="payment-btn">
+                                </span>
+                            </a>
                         </div>
                         
                     </ul>

@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="shadow-lg p-3 rounded-4">
+            <div class="shadow-lg p-2 rounded-4">
 
                 <table class="table">
                     <thead>
@@ -178,6 +178,9 @@
                                     {{cart.total|floatformat:2}} €
                                 </small>
                             </td>
+                            <td>
+                                
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -185,7 +188,7 @@
             <br>
             <div class="float-end mx-4" >
                 <i class="fa-brands fa-cc-amazon-pay fa-xl text-secondary"></i> &nbsp;
-                   <a href="{% url 'payment' %}" style="text-decoration: none;" class="border rounded-4 p-2 shadow">
+                   <a href="{% url 'payment' %}" style="text-decoration: none;" class="border rounded-4 p-3 shadow-sm bg-warning text-light ">
                    PAYER
                    </a>
             </div>

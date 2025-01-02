@@ -176,6 +176,9 @@ $("#btn-choisir").click(function (e) {
             let total = cart.total;
 
             $("#total").text(total);
+            $('#go-facture').html(`
+            <span class="bg-warning p-3 rounded-4 text-light shadow-sm" style="letter-spacing: 4px;">FACTURE</span>
+            `)
         },
     });
 });
@@ -339,14 +342,14 @@ $("#btn-check-card").click(function (e) {
                     '<i class="fa-regular text-success fa-circle-check"></i>'
                 );
                 $("#proceed-payment").html(
-                    ' <p class="shadow-sm p-2 text-primary"; letter-spacing:4px">MERCI DE PROCEDER AU PAIEMENT</p>'
+                    ' <p class="shadow-sm p-2 text-warning"; letter-spacing:4px">MERCI DE PROCEDER AU PAIEMENT</p>'
                 );
                 $("#checked-circle").html(
-                    '<i class="fa-solid fa-circle-check text-primary" style="font-size: 150px;"></i>'
+                    '<i class="fa-solid fa-circle-check text-warning" style="font-size: 150px;"></i>'
                 );
                 $("#payment-btn").html(`
-                <button class="btn btn-outline-primary rounded-4 shadow-sm">                             
-                <i class="fa-solid fa-circle-arrow-right"></i> &nbsp;PAYER</button>                        
+                <button class="btn btn-outline-warning rounded-4 p-3 shadow-sm" style="letter-spacing: 4px;">                             
+                <i class="fa-solid fa-circle-arrow-right" ></i> <br>PAYER</button>                        
                 `);
             }
         },

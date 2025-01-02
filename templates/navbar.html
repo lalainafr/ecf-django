@@ -39,20 +39,23 @@
                 {% if request.user.is_authenticated %}
 
                 <li class="nav-item">
-                    <a
-                        class="nav-link btn btn-light"
-                        href="{% url 'cart' %}"
-                        type="button"
-                    >
-                        Panier {% if cart == None %}
+                    {% if cart == None %}
+                    <p class="nav-link btn btn-light">
+                        Panier
                         <span
                             class="badge badge-light bg-success text-light rounded-4"
                             id="cart-qty"
                         >
                             0
                         </span>
-
-                        {% else %}
+                    </p>
+                    {% else %}
+                    <a
+                        class="nav-link btn btn-light"
+                        href="{% url 'cart' %}"
+                        type="button"
+                    >
+                        Panier
                         <span
                             class="badge badge-light bg-success text-light rounded-4"
                             id="cart-qty"
@@ -73,7 +76,7 @@
                 {% endif %}
                 <li class="nav-item dropdown">
                     <a
-                        class="nav-link dropdown-toggle shadow-sm rounded-3 text-warning text-petit"
+                        class="nav-link dropdown-toggle shadow rounded-3 text-warning text-petit"
                         href="#"
                         id="navbarDropdown"
                         role="button"
@@ -110,7 +113,7 @@
 
             <div class="d-flex">
                 {% if request.user.is_authenticated %}
-                <p class="text-petit text-muted mt-2 shadow">
+                <p class="text-petit text-muted mt-1 shadow-sm p-1">
                     {{request.user}}
                 </p>
                 &nbsp;

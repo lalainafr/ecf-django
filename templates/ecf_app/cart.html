@@ -116,10 +116,12 @@
                 <div class="float-end small-text">
                     Il y a <b>{{cart.getTotalOrders}}</b> element(s) commandés dans le panier
                 </div>
-
+                <br><br>
                 <div>
-                    <i class="fa-regular fa-square-caret-right text-info text-petit"> &nbsp; Voir la facture</i>&nbsp;<br>
-                    <a href="{% url 'invoice' %}" class="btn btn btn-outline-info rounded-4 btn-petit text-secondary">Facture</a>
+                    <i class="fa-regular fa-square-caret-right text-info text-petit"> &nbsp; Aller A la page facturation</i>&nbsp;<br>
+                    <br>
+
+                    <a href="{% url 'invoice' %}" style="text-decoration: none;" id="go-facture">  </a>
                 </div>
             </div>
             <div class="col-md-3 px-3 mx-4">

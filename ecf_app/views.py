@@ -314,4 +314,9 @@ def valid_payment(request):
         
     
     return redirect('home')
+
+def payment_list(request, user):
+    payments = Payment.objects.filter(user = request.user.id)
+    context =  {'payments': payments}
+    return render(request, 'ecf_app/payment_list.html', context)
     

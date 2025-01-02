@@ -5,6 +5,20 @@
             <h1 class="display-3 fw-bold lh-1 mb-3 text-secondary">
                 User Profile
             </h1>
+            <p class="text-petit">
+                Appuyez sur le bouton afin de remplir ou modifier le profil
+                <br />
+
+                <button class="btn btn-outline-secondary rounded-4">
+                    <a
+                        href="{% url 'edit_profile' request.user %}"
+                        style="text-decoration: none"
+                    >
+                        Edit
+                    </a>
+                </button>
+            </p>
+
             <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Suscipit illum, voluptatem doloremque hic nisi ipsum eum, fuga
@@ -17,16 +31,19 @@
             </p>
             <br />
             <p class="text-petit">
-                Appuyez sur le bouton afind e remplir ou modifier le profil
+                Appuyez sur le bouton afin de voir la liste des paiements
+                effectuées
+                <br />
+
+                <button class="btn btn-outline-secondary rounded-4">
+                    <a
+                        href="{% url 'payment_list' request.user %}"
+                        style="text-decoration: none"
+                    >
+                        Liste paiement
+                    </a>
+                </button>
             </p>
-            <button class="btn btn-outline-secondary rounded-4">
-                <a
-                    href="{% url 'edit_profile' request.user %}"
-                    style="text-decoration: none"
-                >
-                    Edit
-                </a>
-            </button>
         </div>
     </div>
     <div class="col-md-6">

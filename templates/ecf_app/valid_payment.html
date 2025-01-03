@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load static %} {% block heading%}
+<div class="text-muted">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-secondary">
+        <i class="fa-solid fa-circle-chevron-right fa-xs text-light"></i>
+        Ticket
+    </h1>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
+        obcaecati aspernatur, soluta nemo placeat ipsum tempore saepe,
+        cupiditate deleniti a officia debitis quam id numquam veniam nisi
+        provident aperiam temporibus!
+    </p>
+</div>
+</div>
+{% endblock heading%} {% block content %} {%load widget_tweaks%}
+<!-- Section-->
+<br>
+<section class="">
+    <div class="p-2 shadow col-md-6 text-center rounded-4">
+        <br>
+        <p>Merci de trouver ci-apres votre ticket</p>
+        {% if img_name %}
+        <div>
+            <img src="/media/{{ img_name }}" alt="qr code" class="col-md-6" style="height: 300px; width: 300px;">
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{%endblock content%}

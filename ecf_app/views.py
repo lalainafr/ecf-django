@@ -10,6 +10,10 @@ from django.urls import reverse
 from var_dump import var_dump
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
+import qrcode
+from django.conf import settings
+from qrcode import *
+import time
 
 
 User = get_user_model()
@@ -308,15 +312,22 @@ def valid_payment(request):
     # une fois le panier payé
     # supprimer le panier
     # supprimer les commanndes
-
-    cart.isPaid = True
-    cart.save()
-    if cart.isPaid:
-        cart.delete()
-        orders.delete()
-        
     
-    return redirect('home')
+    # cart.isPaid = True
+    # cart.save()
+    
+    # if cart.isPaid:
+    #     cart.delete()
+    #     orders.delete()
+
+    # Generate ticket qrcode
+    userUid= user.userUid
+    paymentUid = payment.paymentUid
+    data = str('http://127.0.0.1:8000/check-ticket/')+str(userUid) +'/'+ str(paymentUid)
+    img = qrcode.make(data)
+    img_name = 'qr' + str(time.time()) + '.png'
+    img.save(settings.MEDIA_ROOT + '/' + img_name)
+    return render(request, 'ecf_app/valid_payment.html', {'img_name': img_name})
 
 def payment_list(request, user):
     payments = Payment.objects.filter(user = request.user.id)
@@ -324,10 +335,11 @@ def payment_list(request, user):
     return render(request, 'ecf_app/payment_list.html', context)
 
 def check_ticket(request, userUid, paymentUid):
-    user = User.objects.get(userUid = userUid)
-    payment = Payment.objects.get(paymentUid = paymentUid)
+    user = get_object_or_404(User, userUid = userUid)
+    payment = get_object_or_404(Payment, paymentUid = paymentUid)
     print(user)
     print(payment)
+        
     if str(user) == str(payment):
         return HttpResponse('Check')
     else:

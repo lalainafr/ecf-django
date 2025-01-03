@@ -8,8 +8,11 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from var_dump import var_dump
+from django.contrib.auth import get_user_model
+from django.http import HttpResponse
 
 
+User = get_user_model()
 
 def home(request):
     return render(request, 'ecf_app/home.html')
@@ -319,4 +322,32 @@ def payment_list(request, user):
     payments = Payment.objects.filter(user = request.user.id)
     context =  {'payments': payments}
     return render(request, 'ecf_app/payment_list.html', context)
+
+def check_ticket(request, userUid, paymentUid):
+    user = User.objects.get(userUid = userUid)
+    payment = Payment.objects.get(paymentUid = paymentUid)
+    print(user)
+    print(payment)
+    if str(user) == str(payment):
+        return HttpResponse('Check')
+    else:
+        return HttpResponse('error')
+    
+    # TEST
+    # meme user
+    # userId: a83c7ee3-abee-445d-8f74-e8304fb9f77a
+    # paymentId: 94719130-c8c1-4de0-8ab8-7b047fbd14d7
+    
+    # autre
+    # userId: 169d4f7f-4301-4475-a3b1-bc78f88d75c8
+    
+    # TRUE
+    # a83c7ee3-abee-445d-8f74-e8304fb9f77a/94719130-c8c1-4de0-8ab8-7b047fbd14d7
+    
+    # FALSE
+    # 169d4f7f-4301-4475-a3b1-bc78f88d75c8/94719130-c8c1-4de0-8ab8-7b047fbd14d7
+        
+    
+    
+
     

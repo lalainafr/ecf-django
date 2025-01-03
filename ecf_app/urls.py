@@ -28,5 +28,7 @@ urlpatterns = [
     path('payment', views.payment, name='payment'),
     path('valid-payment', views.valid_payment, name='valid_payment'),
     path('payment-list/<str:user>', views.payment_list, name='payment_list'),
+    
+    path('check-ticket/<str:userUid>/<str:paymentUid>', views.check_ticket, name='check_ticket'),
 ]
 

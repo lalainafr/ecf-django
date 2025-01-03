@@ -44,7 +44,9 @@ class Cart(models.Model):
     isPaid = models.BooleanField(default=False)
            
     def __str__(self):
-        return self.user.first_name + ' ' +  self.user.last_name 
+        return self.user.last_name + ' ' +  self.user.first_name 
+
+
 
 
     # methode afin de rajouter l'offre selectionée dans le panier
@@ -64,6 +66,10 @@ class Payment(models.Model):
     orders = models.CharField(max_length=200, null=True, blank=True)
     paymentUid =  models.UUIDField(default=uuid.uuid4)
     cartAmount = models.FloatField(default=0.00)
+    
+    def __str__(self):
+        return self.user.last_name + ' ' +  self.user.first_name 
+
 
         
     

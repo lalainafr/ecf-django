@@ -20,13 +20,13 @@
       {% if cart.user == request.user %}
         <div class="row">
             <div class="col-md-8 mx-3">
-                <p class="text-info">
+                <p class="text-dark">
                     <i class="fa-solid fa-circle-arrow-right"></i> 
                     Réference du panier: <br>
-                    <small class="text-muted shadow-sm">{{cart.cartUid}}</small>
+                    <small class="text-muted shadow-sm p-2">{{cart.cartUid}}</small>
                 </p>
                 <br>
-                <p class="text-info">
+                <p class="text-dark">
                     <i class="fa-solid fa-circle-arrow-right"></i> 
                     Liste des competitions commandées
                 </p>
@@ -128,10 +128,8 @@
 
                 <p>
                     <span class="text-info">
-                        <i class="fa-solid fa-circle-arrow-right"></i> 
-                        Choisir une offre
+                       <i class="fa-regular fa-square-caret-right text-info text-petit"> &nbsp; Choisir une offre</i>&nbsp;<br>
                     </span>
-                    <br>
                 </p>
                 <div class="shadow p-3">
                     <form action="" method="POST" id="offer-form">

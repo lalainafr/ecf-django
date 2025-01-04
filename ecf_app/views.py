@@ -309,16 +309,6 @@ def valid_payment(request):
         )
     payment.save()
     
-    # une fois le panier payé
-    # supprimer le panier
-    # supprimer les commanndes
-    
-    # cart.isPaid = True
-    # cart.save()
-    
-    # if cart.isPaid:
-    #     cart.delete()
-    #     orders.delete()
 
     # Generate ticket qrcode
     userUid= user.userUid
@@ -327,6 +317,18 @@ def valid_payment(request):
     img = qrcode.make(data)
     img_name = 'qr' + str(time.time()) + '.png'
     img.save(settings.MEDIA_ROOT + '/' + img_name)
+    
+    # une fois le panier payé
+    # supprimer le panier
+    # supprimer les commanndes
+    
+    cart.isPaid = True
+    cart.save()
+    
+    if cart.isPaid:
+        cart.delete()
+        orders.delete()
+    
     return render(request, 'ecf_app/valid_payment.html', {'img_name': img_name})
 
 def payment_list(request, user):

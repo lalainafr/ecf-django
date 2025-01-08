@@ -30,5 +30,8 @@ urlpatterns = [
     path('payment-list/<str:user>', views.payment_list, name='payment_list'),
     
     path('check-ticket/<str:userUid>/<str:paymentUid>', views.check_ticket, name='check_ticket'),
+    path('ticket-list/<str:user>', views.ticket_list, name='ticket_list'),
+    path('ticket-detail/<int:pk>', views.ticket_detail, name='ticket_detail'),
+
 ]
 

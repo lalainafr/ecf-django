@@ -46,9 +46,6 @@ class Cart(models.Model):
     def __str__(self):
         return self.user.last_name + ' ' +  self.user.first_name 
 
-
-
-
     # methode afin de rajouter l'offre selectionée dans le panier
     def add(self, offer):        
         self.offer = offer
@@ -68,8 +65,13 @@ class Payment(models.Model):
     cartAmount = models.FloatField(default=0.00)
     
     def __str__(self):
-        return self.user.last_name + ' ' +  self.user.first_name 
-
-
-        
+        return self.user.last_name + ' ' +  self.user.first_name  + ' ' + str(self.paymentUid)
     
+class Ticket(models.Model):
+    date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    payment = models.OneToOneField(Payment, on_delete=models.CASCADE, null=True, blank=True)
+    qrcode = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.user.last_name + ' ' +  self.user.first_name  + ' ' +  str(self.payment.paymentUid) 

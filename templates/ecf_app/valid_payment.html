@@ -16,12 +16,11 @@
     <div class="p-2 text-center">
         <br>
         <p>Merci de trouver ci-apres votre ticket</p>
-        {% if img_name %}
         <div>
-            <img src="/media/{{ img_name }}" alt="qr code" class="col-md-6" style="height: 300px; width: 300px;">
+            <img src="/media/{{ ticket.qrcode }}" alt="qr code" class="col-md-6" style="height: 300px; width: 300px;">
         </div>
-        {% endif %}
     </div>
+    <a href="{% url 'ticket_list' request.user%}">Voir les tickets</a>
 </section>
 
 {%endblock content%}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .form import OfferForm, CompetitionForm, UpdateCompetitionForm, OfferChoiceForm, PaymentForm
-from .models import Offer, Competition, Cart, Order, Payment
+from .models import Offer, Competition, Cart, Order, Payment, Ticket
 from account.models import Profile
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -318,6 +318,17 @@ def valid_payment(request):
     img_name = 'qr' + str(time.time()) + '.png'
     img.save(settings.MEDIA_ROOT + '/' + img_name)
     
+    
+    # On creer les infos du ticket en bdd
+    payment =Payment.objects.get(paymentUid=paymentUid)
+    ticket = Ticket.objects.create(
+        user = user,
+        payment = payment,
+        qrcode = str(img_name),
+        )
+    ticket.save()
+
+    
     # une fois le panier payé
     # supprimer le panier
     # supprimer les commanndes
@@ -329,7 +340,22 @@ def valid_payment(request):
         cart.delete()
         orders.delete()
     
-    return render(request, 'ecf_app/valid_payment.html', {'img_name': img_name})
+    context = {'ticket': ticket}    
+    
+    return render(request, 'ecf_app/valid_payment.html', context)
+
+
+def ticket_list(request, user):
+    tickets = Ticket.objects.filter(user = request.user.id)
+    context =  {'tickets': tickets}
+    return render(request, 'ecf_app/ticket_list.html', context)
+
+def ticket_detail(request, pk):
+    ticket = Ticket.objects.get(pk=pk)
+    context =  {'ticket': ticket}
+    return render(request, 'ecf_app/ticket_detail.html', context)
+
+
 
 def payment_list(request, user):
     payments = Payment.objects.filter(user = request.user.id)

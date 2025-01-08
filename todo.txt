@@ -1,14 +1,11 @@
-CART
+- create ticket entity
+- ticket list
+- check valid ticket
+- user privilege and authorisation
+- test unitaire et fonctionnel
+- fixture
+- deployement
 
-create ORDER and CART models
-
-view.add_to_cart
-implement offer select + dynamic update of the select according to the selected option
-
-message si cart est deja rajouté au panier
-
-view.delete_from_cart > remove order from the CART
-
-Implement 
-- competiton price 
-- CART total > take into account the offer condition (discount, nbPers)
+- MCD
+- User story
+- Trello

@@ -29,18 +29,31 @@
                 perspiciatis expedita, corrupti beatae delectus vero sit
                 molestias nostrum aliquid quae magnam?
             </p>
+            <hr />
             <br />
             <p class="text-petit">
                 Appuyez sur le bouton afin de voir la liste des paiements
                 effectuées
-                <br />
-
-                <button class="btn btn-outline-secondary rounded-4">
+                </p>
+                <button class="shadow-sm border text-light text-petit p-2">
                     <a
                         href="{% url 'payment_list' request.user %}"
                         style="text-decoration: none"
                     >
-                        Liste paiement
+                        Mes paiements
+                    </a>
+                </button>
+            </p>
+            <p class="text-petit">
+                Appuyez sur le bouton afin de voir la liste des billets achetés
+                effectuées
+            </p>
+                <button class="shadow-sm border text-light text-petit p-2">
+                    <a
+                        href="{% url 'ticket_list' user.id %}"
+                        style="text-decoration: none"
+                    >
+                        Mes Billets
                     </a>
                 </button>
             </p>

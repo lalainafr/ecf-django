@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% load static %} {% block heading%}
+<div class="text-muted">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-secondary">
+        <i class="fa-solid fa-circle-chevron-right fa-xs text-light"></i>
+        Détail du billet
+    </h1>
+    <p>
+        Vous trouverez ci-dessous votre ticket. Vous pouvez l'utiliser sur votre téléphone, l'imprimer sur un papier,
+        soit l'enregistrer en tant que fichier image 'png' en faisant un click droit ensuite enregistrer dans un dossier
+    </p>
+</div>
+</div>
+{% endblock heading%} {% block content %} {%load widget_tweaks%}
+<!-- Section-->
+<br>
+<section>
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <p class="text-petit">Offre choisie:</p>
+            <p>{{ticket.payment.offer}}</p>
+            <p class="text-petit">Match commandés:</p>
+            <p>{{ticket.payment.orders}}</p>
+            <p class="text-petit">Date d'achat:</p>
+            <p>{{ticket.date}}</p>
+            <br>
+            <button class="shadow-sm border text-light text-petit p-2">
+                <a href="{% url 'ticket_list' request.user %}" style="text-decoration: none">
+                    Mes billets
+                </a>
+            </button>
+            </p>
+            <button class="shadow-sm border text-light text-petit p-2">
+                <a href="{% url 'home'%}" style="text-decoration: none">
+                    Accueil
+                </a>
+            </button>
+        </div>
+        <div class="col-md-9">
+            <div class="p-2 text-center">
+                <p>Merci de trouver ci-apres votre ticket</p>
+                <div>
+                    <img src="/media/{{ ticket.qrcode }}" alt="qr code" class="col-md-6"
+                        style="height: 300px; width: 300px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</section>
+
+{%endblock content%}

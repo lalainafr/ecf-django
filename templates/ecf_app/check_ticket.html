@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% load static %} {% block heading%}
+<div class="text-muted">
+    <h1 class="display-3 fw-bold lh-1 mb-3 text-secondary">
+        <i class="fa-solid fa-circle-chevron-right fa-xs text-light"></i>
+        Verification du billet
+    </h1>
+    <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae fugit unde inventore quis delectus
+        pariatur molestiae laudantium iste rem. Veniam modi corrupti tempora excepturi, esse dicta fugit cum labore
+        similique?
+    </p>
+</div>
+</div>
+{% endblock heading%} {% block content %} {%load widget_tweaks%}
+<!-- Section-->
+<br>
+<section>
+    <div class="row">
+        {% if verification == 'ok' %}
+        <div class="text-center ">
+            <div class="card p-4 rounded-4 shadow-lg mx-auto" style="width: 28rem;">
+                <div class=" col-md-2 p-3 shadow-sm bg-success rounded-2 shadow mx-auto">
+                <i class="fa-solid fa-check fa-2xl text-light"></i>
+                </div>
+                <p class="text-petit">Checked</p>
+                <div class="card-body">
+                    <h5 class="card-title"><span class="text-petit">Bonjour</span> {{user}}</h5>
+                    <p class="card-text">Votre billet a été &nbsp; <span class="display-6" style="letter-spacing: 6px;">Vérifié</span>. <br>
+                     Nous vous souhaitons de passez un excellement match.</p>
+                    <br>
+                    <a href="{% url 'home' %}" class="btn btn-primary shadow-sm rounded-4 ">Accueil</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+         <div class="text-center ">
+            <div class="card p-4 rounded-4 shadow-lg mx-auto" style="width: 28rem;">
+                <div class=" col-md-2 p-3 shadow-sm bg-danger rounded-2 shadow mx-auto">
+                <i class="fa-solid fa-xmark fa-2xl text-light"></i>
+                </div>
+                <p class="text-petit">Refused</p>
+                <div class="card-body">
+
+                    <p class="card-text">Votre billet a été &nbsp; <span class="display-6" style="letter-spacing: 6px;">Refusé</span>. <br>
+                     Nous vous prions de scanner le bon ticket.</p>
+                    <br>
+                    <a href="{% url 'home' %}" class="btn btn-primary shadow-sm rounded-4 ">Accueil</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+
+</section>
+
+{%endblock content%}

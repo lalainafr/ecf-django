@@ -16,13 +16,13 @@
 <section>
     <div class="row">
         <div class="col-md-3 text-center">
-            <p class="text-petit">Offre choisie:</p>
-            <p>{{ticket.payment.offer}}</p>
-            <p class="text-petit">Match commandés:</p>
-            <p>{{ticket.payment.orders}}</p>
-            <p class="text-petit">Date d'achat:</p>
-            <p>{{ticket.date}}</p>
+            <div class="bg-light p-3 shadow-lg rounded-4 mt-3">
+                <p class="text-petit">Offre choisie:  <br>{{ticket.payment.offer}}</p>
+                <p class="text-petit">Match commandés: <br>{{ticket.payment.orders}}</p>
+                <p class="text-petit">Date d'achat: <br>{{ticket.date}}</p>
+            </div>
             <br>
+
             <button class="shadow-sm border text-light text-petit p-2">
                 <a href="{% url 'ticket_list' request.user %}" style="text-decoration: none">
                     Mes billets

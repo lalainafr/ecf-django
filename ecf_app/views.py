@@ -365,13 +365,20 @@ def payment_list(request, user):
 def check_ticket(request, userUid, paymentUid):
     user = get_object_or_404(User, userUid = userUid)
     payment = get_object_or_404(Payment, paymentUid = paymentUid)
-    print(user)
-    print(payment)
+   
+    # print(user)
+    # print(payment.user)
+    
+    if str(user) == str(payment.user):
+        ticket = Ticket.objects.get(user=user, payment= payment)
+        verification = 'ok'
+        ticket.is_checked = True
+        ticket.save()
         
-    if str(user) == str(payment):
-        return HttpResponse('Check')
+        return render(request, 'ecf_app/check_ticket.html', {'verification': verification, 'user': user})
     else:
-        return HttpResponse('error')
+        verification = 'error'
+        return render(request, 'ecf_app/check_ticket.html', {'verification': verification})
     
     # TEST
     # meme user

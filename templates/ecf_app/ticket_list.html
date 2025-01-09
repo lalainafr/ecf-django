@@ -18,15 +18,11 @@
     <br />
     <div class="row justify-content-center">
         {% for ticket in tickets %}
+        {% if ticket.is_checked == False%}
         <div class="col-md-3 card m-3 p-3 shadow-lg" style="width: 15rem">
             <div class="text-center">
-                <img
-                    class="card-img-top"
-                    class="w-25 d-block rounded-5 shadow-sm p-2"
-                    src="/media/{{ ticket.qrcode }}"
-                    alt="qr code"
-                    style="height: 180px; width: 180px"
-                />
+                <img class="card-img-top" class="w-25 d-block rounded-5 shadow-sm p-2" src="/media/{{ ticket.qrcode }}"
+                    alt="qr code" style="height: 180px; width: 180px" />
             </div>
             <div class="card-body">
                 <small class="text-muted"> {{ ticket.date }}</small>
@@ -36,15 +32,39 @@
                         Prestations: <br />{{ ticket.payment.orders}}
                     </p>
                 </div>
-                <a
-                    href="{% url 'ticket_detail' ticket.id %}"
-                    class="btn btn-outline-info btn-petit rounded-4 text-secondary"
-                    >Detail</a
-                >
+
             </div>
+            <div class="card-text" >
+                <a href="{% url 'ticket_detail' ticket.id %}"
+                    class="btn btn-outline-info btn-petit rounded-4 text-secondary" style="float: right;">Detail</a>
+            </div>
+
+            {% else %}
+            <div class="col-md-3 card m-3 p-3 shadow-lg" style="width: 15rem">
+                <div class="text-center">
+                    <img class="card-img-top" class="w-25 d-block rounded-5 shadow-sm p-2"
+                        src="/media/{{ ticket.qrcode }}" alt="qr code"
+                        style="height: 180px; width: 180px; opacity: 10%;" />
+                </div>
+                <div class="card-body">
+                    <div style="opacity: 10%;">
+
+                        <small class="text-muted"> {{ ticket.date }}</small>
+                        <h5 class="card-title">{{ ticket.payment.offer }}</h5>
+                        <div class="card-title">
+                            <p class="text-petit">
+                                Prestations: <br />{{ ticket.payment.orders}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-text" >
+                    <a href="#" class="btn btn-danger btn-petit rounded-4 " style="float: right;">Billet utilisé</a>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
 </section>
 
 {% endblock content %}

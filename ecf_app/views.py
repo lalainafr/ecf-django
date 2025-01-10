@@ -344,12 +344,13 @@ def valid_payment(request):
     
     return render(request, 'ecf_app/valid_payment.html', context)
 
-
+# liste des tickets pour l'user
 def ticket_list(request, user):
     tickets = Ticket.objects.filter(user = request.user.id)
     context =  {'tickets': tickets}
     return render(request, 'ecf_app/ticket_list.html', context)
 
+# liste des paiements pour l'user
 def ticket_detail(request, pk):
     ticket = Ticket.objects.get(pk=pk)
     context =  {'ticket': ticket}
@@ -363,15 +364,18 @@ def payment_list(request, user):
     return render(request, 'ecf_app/payment_list.html', context)
 
 def check_ticket(request, userUid, paymentUid):
+    # On récuperer le user et le paiement correspondant à userUid et paymentUid
     user = get_object_or_404(User, userUid = userUid)
     payment = get_object_or_404(Payment, paymentUid = paymentUid)
    
     # print(user)
     # print(payment.user)
     
+    # On comparer si le user et le payment trouvé vient du meme user
     if str(user) == str(payment.user):
         ticket = Ticket.objects.get(user=user, payment= payment)
         verification = 'ok'
+        # on met a true is_checked -> pour dire que le ticket a été utilisé
         ticket.is_checked = True
         ticket.save()
         
@@ -379,22 +383,12 @@ def check_ticket(request, userUid, paymentUid):
     else:
         verification = 'error'
         return render(request, 'ecf_app/check_ticket.html', {'verification': verification})
-    
-    # TEST
-    # meme user
-    # userId: a83c7ee3-abee-445d-8f74-e8304fb9f77a
-    # paymentId: 94719130-c8c1-4de0-8ab8-7b047fbd14d7
-    
-    # autre
-    # userId: 169d4f7f-4301-4475-a3b1-bc78f88d75c8
-    
-    # TRUE
-    # a83c7ee3-abee-445d-8f74-e8304fb9f77a/94719130-c8c1-4de0-8ab8-7b047fbd14d7
-    
-    # FALSE
-    # 169d4f7f-4301-4475-a3b1-bc78f88d75c8/94719130-c8c1-4de0-8ab8-7b047fbd14d7
-        
-    
+
+# liste de tous les tickets pour l'admin
+def all_ticket_list(request):
+    tickets = Ticket.objects.all()
+    context =  {'tickets': tickets}
+    return render(request, 'ecf_app/all_ticket_list.html', context)
     
 
     

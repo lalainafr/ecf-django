@@ -21,6 +21,48 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% if user.is_superuser %}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        ADMIN panel
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'offer'%}"
+                                >Offre</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="{% url 'list_competition'%}"
+                                >Competition</a
+                            >
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="{% url 'all_ticket_list' %}"
+                                >Liste billet</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            {% else %}
+
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a
@@ -35,8 +77,6 @@
                         >Competition</a
                     >
                 </li>
-
-                {% if request.user.is_authenticated %}
 
                 <li class="nav-item">
                     {% if cart == None %}
@@ -74,41 +114,6 @@
                     >
                 </li>
                 {% endif %}
-                <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle shadow rounded-3 text-warning text-petit"
-                        href="#"
-                        id="navbarDropdown"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        ADMIN panel
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="{% url 'offer'%}"
-                                >Gérér offre</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                class="dropdown-item"
-                                href="{% url 'list_competition'%}"
-                                >Gérér competition</a
-                            >
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"
-                                >Something else here</a
-                            >
-                        </li>
-                    </ul>
-                </li>
             </ul>
 
             <div class="d-flex">

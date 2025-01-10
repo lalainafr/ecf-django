@@ -1,6 +1,4 @@
-- create ticket entity
-- ticket list
-- check valid ticket
+
 - user privilege and authorisation
 - test unitaire et fonctionnel
 - fixture

@@ -313,7 +313,7 @@ def valid_payment(request):
     # Generate ticket qrcode
     userUid= user.userUid
     paymentUid = payment.paymentUid
-    data = str('http://127.0.0.1:8000/check-ticket/')+str(userUid) +'/'+ str(paymentUid)
+    data = str('https://ecf-django.onrender.com/check-ticket/')+str(userUid) +'/'+ str(paymentUid)
     img = qrcode.make(data)
     img_name = 'qr' + str(time.time()) + '.png'
     img.save(settings.MEDIA_ROOT + '/' + img_name)

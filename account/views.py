@@ -55,7 +55,7 @@ def register_user(request):
             email_subject="Activer votre compte"
             message = render_to_string('account/activate.html', {
             'user ': user,
-            'domain':'127.0.0.1:8000',
+            'domain':'https://ecf-django.onrender.com',
             # encoder le user.pk
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             # generer un token pour le user.pk

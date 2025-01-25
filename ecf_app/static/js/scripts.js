@@ -23,7 +23,8 @@ $("#btn-save").click(function () {
 
     // appel AJAX
     $.ajax({
-        url: "http://127.0.0.1:8000/data-save",
+        // url: "http://127.0.0.1:8000/data-save",
+        url: "https://ecf-django.onrender.com/data-save",
         type: "POST",
         data: mydata,
 
@@ -84,7 +85,8 @@ $("#tbody").on("click", ".btn-del", function () {
     // appel AJAX
     $.ajax({
         method: "POST",
-        url: "http://127.0.0.1:8000/data-delete",
+        // url: "http://127.0.0.1:8000/data-delete",
+        url: "https://ecf-django.onrender.com/data-delete",
         data: mydata,
         success: function (data) {
             console.log(data.status);
@@ -119,7 +121,8 @@ $("#tbody").on("click", ".btn-edit", function () {
     // appel AJAX
     $.ajax({
         method: "POST",
-        url: "http://127.0.0.1:8000/data-edit",
+        // url: "http://127.0.0.1:8000/data-edit",
+        url: "https://ecf-django.onrender.com/data-edit",
         data: mydata,
         success: function (data) {
             // Prépopuler avec data les données du formulaire sur le browser
@@ -154,7 +157,8 @@ $("#btn-choisir").click(function (e) {
 
     $.ajax({
         type: "post",
-        url: "http://127.0.0.1:8000/cart",
+        // url: "http://127.0.0.1:8000/cart",
+        url: "https://ecf-django.onrender.com/cart",
         data: {
             offer_id: valeurselectionnee,
             csrfmiddlewaretoken: token,
@@ -232,7 +236,8 @@ $("#tbody-ajax").on("click", ".btn-del-ajax", function () {
     // appel AJAX
     $.ajax({
         method: "POST",
-        url: "http://127.0.0.1:8000/remove-from-cart/" + order_id,
+        // url: "http://127.0.0.1:8000/remove-from-cart/" + order_id,
+        url: "https://ecf-django.onrender.com/remove-from-cart/" + order_id,
         data: {
             order_id: order_id,
             csrfmiddlewaretoken: token,
@@ -265,7 +270,8 @@ $("#btn-check-card").click(function (e) {
 
     $.ajax({
         type: "get",
-        url: "http://127.0.0.1:8000/account/list-profile",
+        // url: "http://127.0.0.1:8000/account/list-profile",
+        url: "https://ecf-django.onrender.com/account/list-profile",
         success: function (response) {
             profile_data = response.profile_data;
             for (let index = 0; index < profile_data.length; index++) {
